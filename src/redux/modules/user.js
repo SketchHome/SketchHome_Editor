@@ -22,7 +22,7 @@ const kakaoLogin = (code) => {
         }).catch((err) => {
             console.log("Login error", err);
             window.alert("Login failed...");
-            //history.replace("/home");
+            //history.replace("/home");git 
         });
     }
 };
