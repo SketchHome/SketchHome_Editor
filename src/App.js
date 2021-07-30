@@ -17,13 +17,20 @@ import './components/index.css'
 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       <Navbar />
-      <BrowserRouter basename="/home">
-        <Route path="/home" component={Home} />
-        <Route path="/login" component={Login} />
+      <BrowserRouter>
+        <Switch>
+          <Route exact={true} path="/" component={Home}/>
+          <Route path="/home" component={Home} />
+          <Route path="/login" component={Login} />
+        </Switch> 
       </BrowserRouter>
     </div>
+    </Provider>
   );
+  serviceWorker.unregister();
 }
+
 export default App;
