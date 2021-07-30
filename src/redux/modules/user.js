@@ -4,7 +4,7 @@ const kakaoLogin = (code) => {
     return function (dispatch, getState) {
         axios({
             method: "GET",
-            url: `http://localhost:5000/login/?code=${code}`,
+            url: `http://localhost:5000/?code=${code}`,
         })
         .then((res) => {
             //get token
