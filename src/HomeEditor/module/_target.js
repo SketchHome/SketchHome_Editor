@@ -28,10 +28,11 @@ const addTarget = (target, object) => {
     let color;
     if (object.name === "load_object_part") {
         color = {
-            r: 0,
-            g: 0,
-            b: 0
-        }
+            r: object.material.color.r,
+            g: object.material.color.g,
+            b: object.material.color.b
+        };
+        object.material.color.set("#ec5858");
     }
     else {
         color = {
@@ -51,6 +52,9 @@ const addTarget = (target, object) => {
 const removeTarget = (target) => {
     const temp_target = target.pop();
     if (temp_target.object.name === "load_object_part") {
+        temp_target.object.material.color.r = temp_target.color.r;
+        temp_target.object.material.color.g = temp_target.color.g;
+        temp_target.object.material.color.b = temp_target.color.b;
         
     }
     else {

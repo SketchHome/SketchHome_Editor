@@ -19,17 +19,20 @@ export const set3DMODE = (camera, controls, room) => {
     controls.target.set(0, 0, 0);
     controls.update();
     setZoomMode(controls, 3);
-    setObjectDim(room, 3)
+    setObjectDim(room, 3);
     controls.update();
 };
 
-export const setPersonViewMode = (camera, controls, room) => {
-    camera.position.set(0, 1.3, 0);
-    controls.target.set(0, 1.3, 0.0001);
+export const setPersonViewMode = (viewControls, controls, room) => {
     setZoomMode(controls, 3);
-    setObjectDim(room, 3)
+    controls.enableRotate = false;
     controls.enableZoom = false;
-    controls.update();
+
+    setObjectDim(room, 3);
+    viewControls.getObject().position.set(0, 1.3, 0); //camera
+    viewControls.getObject().lookAt(0, 1.3, 0.001);
+    
+    viewControls.lock();
 }
 
 export const setZoomMode = (controls, mode) => {
@@ -46,7 +49,7 @@ export const setZoomMode = (controls, mode) => {
             controls.enabled = true;
             controls.enableDamping = true;
             controls.enableKeys = true;
-            controls.enablePan = true;
+            controls.enablePan = false;
             controls.enableRotate = true;
             controls.enableZoom = true;
             break;

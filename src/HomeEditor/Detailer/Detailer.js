@@ -4,53 +4,61 @@ import ItemList from "./ItemList";
 
 const Detailer = () => {
     return (
-        <div style={{fontFamily:"NanumSquare_acR", overflow:"scroll", height:"90vh"}}>
+        <div>
             <div>
-                <div style={{visibility:"hidden"}}><span id="mode_name"></span></div>
-                <button id="2D_MODE_btn" className="smallBtn">2D MODE</button>
-                <button id="3D_MODE_btn" className="smallBtn">3D MODE</button>
+                <div>mode: <span id="mode_name"></span></div>
+                <button id="2D_MODE_btn" style={{ width: "120px" }}>2D MODE</button>
+                <button id="3D_MODE_btn" style={{ width: "120px" }}>3D MODE</button>
                 <br />
-                <button id="PersonView_btn" className="bigBtn">Person View MODE</button>
+                <button id="PersonView_btn" style={{ width: "240px" }}>Person View MODE</button>
                 <br />
-                <button id="EDIT_MODE_btn" className="smallBtn">EDIT MODE</button>
-                <button id="ZOOM_MODE_btn" className="smallBtn">ZOOM MODE</button>
+                <button id="EDIT_MODE_btn" style={{ width: "120px" }}>EDIT MODE</button>
+                <button id="ZOOM_MODE_btn" style={{ width: "120px" }}>ZOOM MODE</button>
                 <br />
-                <button id="Camera_Info_btn" className="bigBtn">Get Camera Info</button>
+                <button id="Camera_Info_btn" style={{ width: "240px" }}>Get Camera Info</button>
                 <br />
-                <button id="Export_btn" className="bigBtn">Export</button>
+                <button id="Export_btn" style={{ width: "240px" }}>Export</button>
             </div>
             <br />
             <div>
-                <div style={{visibility:"hidden"}}>target: <span id="target_name"></span></div>
-                <button id="REMOVE_btn" className="smallBtn">REMOVE</button>
+                <div>target: <span id="target_name"></span></div>
+                <button id="REMOVE_btn" style={{ width: "120px" }}>REMOVE</button>
                 <br />
-                <button id="ROTATE_H_btn" className="smallBtn">ROTATE(H)</button>
-                <button id="ROTATE_V_btn" className="smallBtn">ROTATE(V)</button>
+                <button id="ROTATE_H_btn" style={{ width: "120px" }}>ROTATE(H)</button>
+                <button id="ROTATE_V_btn" style={{ width: "120px" }}>ROTATE(V)</button>
             </div>
             <br />
             <div>
-                <p style={{fontFamily: "NanumSquare_acB", fontSize: "18px"}}>방 크기 편집</p>
+                <div>Ceiling : <span id="ceiling_visibility">Invisible</span></div>
+                <button id="show_ceiling" style={{ width: "120px" }}>SHOW CEILING</button>
+                <button id="hide_ceiling" style={{ width: "120px" }}>HIDE CEILING</button>
+            </div>
+            <br />
+                <div>Show room info</div>
+                <button id="Show_room_info" style={{ width: "120px" }}>SHOW ROOM INFO</button>
+            <br />
+            <div>
+                room size
                 <table>
                     <tbody>
                         <tr>
-                            <td>넓이: </td>
-                            <td><input id="resize_width" className="tinybar" type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
+                            <td>width: </td>
+                            <td><input id="resize_width" style={{ width: "100px" }} type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
                         </tr>
                         <tr>
-                            <td>높이: </td>
-                            <td><input id="resize_height" className="tinybar" type="range" step="0.1" min="3" max="20" defaultValue="7" /></td>
+                            <td>height: </td>
+                            <td><input id="resize_height" style={{ width: "100px" }} type="range" step="0.1" min="3" max="20" defaultValue="7" /></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <br/>
             <div>
-                <p style={{fontFamily: "NanumSquare_acB", fontSize: "18px"}}>사물 크기 조정</p>
+                item size
                 <table>
                     <tbody>
                         <tr>
                             <td>size: </td>
-                            <td><input id="resize_item" className="tinybar" type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
+                            <td><input id="resize_item" style={{ width: "100px" }} type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -59,16 +67,16 @@ const Detailer = () => {
             <ItemList />
             <br />
             <div>
-                <p style={{fontFamily: "NanumSquare_acB", fontSize: "18px"}}>문/창문 편집</p>
+                door, window list
                 <table>
                     <tbody>
                         <tr>
-                            <td>문</td>
-                            <td><button id="Add_door_btn" item_name="window" className="tinyBtn">add</button></td>
+                            <td>door</td>
+                            <td><button id="Add_door_btn" item_name="window">add</button></td>
                         </tr>
                         <tr>
-                            <td>창문</td>
-                            <td><button id="Add_window_btn" item_name="door" className="tinyBtn">add</button></td>
+                            <td>window</td>
+                            <td><button id="Add_window_btn" item_name="door">add</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -78,7 +86,7 @@ const Detailer = () => {
                 <table>
                     <tbody>
                         <tr>
-                            <td>바닥 색상:</td>
+                            <td>floor color:</td>
                             <td>
                                 <input type="radio" id="floor_color_1" name="floor_color" value="#e6e6e6" defaultChecked /><label style={{ "backgroundColor": "#e6e6e6", "color": "#e6e6e6" }} htmlFor="floor_color_1">clr</label>
                                 <input type="radio" id="floor_color_2" name="floor_color" value="#ffeebb" /><label style={{ "backgroundColor": "#ffeebb", "color": "#ffeebb" }} htmlFor="floor_color_2">clr</label>
@@ -88,7 +96,7 @@ const Detailer = () => {
                             </td>
                         </tr>
                         <tr>
-                            <td>벽 색상:</td>
+                            <td>wall color:</td>
                             <td>
                                 <input type="radio" id="wall_color_1" name="wall_color" value="#c5a880" defaultChecked /><label style={{ "backgroundColor": "#c5a880", "color": "#c5a880" }} htmlFor="wall_color_1">clr</label>
                                 <input type="radio" id="wall_color_2" name="wall_color" value="#f88f01" /><label style={{ "backgroundColor": "#f88f01", "color": "#f88f01" }} htmlFor="wall_color_2">clr</label>
@@ -96,6 +104,30 @@ const Detailer = () => {
                                 <input type="radio" id="wall_color_4" name="wall_color" value="#487e95" /><label style={{ "backgroundColor": "#487e95", "color": "#487e95" }} htmlFor="wall_color_4">clr</label>
                                 <input type="radio" id="wall_color_5" name="wall_color" value="#e9b0df" /><label style={{ "backgroundColor": "#e9b0df", "color": "#e9b0df" }} htmlFor="wall_color_5">clr</label>
                             </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <div>
+                light
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>light intensity : </td>
+                            <td><input type="range" id="set_light_intensity" step="0.1" min="0" max="1.5" defaultValue="0.7"></input></td>
+                        </tr>
+                        <tr>
+                            <td>light position X : </td>
+                            <td><input type="number" id="set_light_positionx" step="1" min="0" max="300" defaultValue="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td>light position Y : </td>
+                            <td><input type="number" id="set_light_positiony" step="1" min="3" max="300" defaultValue="3"></input></td>
+                        </tr>
+                        <tr>
+                            <td>light position Z : </td>
+                            <td><input type="number" id="set_light_positionz" step="1" min="0" max="300" defaultValue="0"></input></td>
                         </tr>
                     </tbody>
                 </table>

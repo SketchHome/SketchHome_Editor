@@ -6,7 +6,7 @@ import "./ItemList.css"
 const ItemList = () => {
     return (
         <div>
-            <p style={{fontFamily: "NanumSquare_acB", fontSize: "18px"}}>가구 목록</p>
+            item list
             <div className="item_table">
                 <table>
                     <tbody>
@@ -14,7 +14,7 @@ const ItemList = () => {
                             item_path_list.path.map(path =>
                                 <tr key={path.split("/").pop()}>
                                     <td>sofa {path.split("/").pop()}</td>
-                                    <td><button className="Add_item_btn" item_name={path.split("/").pop()} item_path={path} className="tinyBtn">add</button></td>
+                                    <td><button className="Add_item_btn" item_name={path.split("/").pop()} item_path={path}>add</button></td>
                                 </tr>
                             )
                         }

@@ -22,6 +22,7 @@ const addDragTarget = (drag_target, object) => {
             break;
         case "load":
             drag_target.push(object.parent);
+            object.material.color.set("blue");
             break;
         default:
             break;
@@ -46,9 +47,11 @@ export const relocateDragTarget = (target, view_mode) => {
     }
     else if (view_mode === 3) {
         if (target.name === "group_item") {
-            target.position.x = target.obj_position.x;
-            target.position.z = target.obj_position.z;
+            console.log("target position :", target.position);
+            target.position.y = 0;
             target.obj_position.y = target.position.y;
+            // target.obj_position.x = target.position.x;
+            // target.obj_position.z = target.position.z;
         }
         else if (target.name.split("_")[0] === "window") {
             relocateWindow_3D(target);

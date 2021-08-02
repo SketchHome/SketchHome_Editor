@@ -1,69 +1,49 @@
 import { setMouse, setTarget } from "./_target"
 import { setDragTarget, relocateDragTarget } from "./_drag";
 import { set2DMODE, set3DMODE, setZoomMode, setDragMode, setPersonViewMode } from "./_mode";
-import { changeFloorColor, changeWallColor, removeObject, resizeRoom, rotateObjectHorizon, rotateObjectVertical, hexToRgb, resizeItem, exportRoom } from "./_common";
-import { addDoor, addLoadObj, addWindow } from "./_addObject"
+import { changeFloorColor, changeWallColor, removeObject, resizeRoom, rotateObjectHorizon, rotateObjectVertical, hexToRgb, resizeItem, exportRoom, changeLightIntensity, setLightPositionX, setLightPositionY, setLightPositionZ, removeCeiling} from "./_common";
+import { addCeiling, addDoor, addLoadObj, addWindow } from "./_addObject"
 
-// import * as THREE from "three";
-
-export const setKeyboardEvent = (controls, camera, room) => {
+export const setKeyboardEvent = (viewControls, controls, raycaster, camera, scene, room) => {
 
     window.addEventListener("keydown", (event) => {
-        var keycode = event.keyCode;
+        const distance = 0.075;
 
-        if (keycode === 87) {
-            const distance = 0.5;
-            camera.translateZ(-distance);
-            camera.position.setY(1.3);
+        let eventCode = event.code;
+
+        if(viewControls.isLocked === true){
+            switch (eventCode){
+                case "KeyW" :
+                    viewControls.moveForward(distance);
+                    break;
+                case "KeyS" :
+                    viewControls.moveForward(-distance);
+                    break;
+                case "KeyA" :
+                    viewControls.moveRight(-distance);
+                    break;
+                case "KeyD" :
+                    viewControls.moveRight(distance);
+                    break;
+                case "Escape" :
+                    viewControls.isLocked = false;
+                    break;
+            }
+        }
+
+        if(viewControls.isLocked === false && eventCode === "KeyR"){ //restart
+            viewControls.lock();
         }
     });
-    // const moveCamera = async (distance) => {
-    //     for (let i = 0; i < 7; i++) {
-    //         camera.translateX(distance);
-    //         // camera.translateY(distance);
-    //         await sleep(70);
-    //     }
-    // }
-
-    // const sleep = (ms) => {
-    //     return new Promise((resolve) => {
-    //         setTimeout(resolve, ms);
-    //     });
-    // }   
-    // function onDocumentKeyDown(event) {
-    //     var delta = 0.2;
-    //     event = event || window.event;
-    //     var keycode = event.keyCode;
-    //     switch (keycode) {
-    //         case 87:
-    //             console.log(camera.position)
-    //             // camera.position.x = camera.position.x - delta;
-    //             break;
-    //         case 65:
-    //             camera.position.z = camera.position.z - delta;
-    //             break;
-    //         case 83: 
-    //             camera.position.x = camera.position.x + delta;
-    //             break;
-    //         case 68:
-    //             camera.position.z = camera.position.z + delta;
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    //     document.addEventListener('keyup', onDocumentKeyUp, false);
-    // }
-    // function onDocumentKeyUp(event) {
-    //     document.removeEventListener('keydown', onDocumentKeyDown, false);
-    // }
 }
 
 export const setMouseEvent = (width, height,
-    mouse, camera, scene, raycaster,
+    mouse, viewControls, camera, scene, raycaster,
     target, drag_target, dragControls, room) => {
 
     // normal click event - set target 		
     window.addEventListener("mousedown", (event) => {
+        if (viewControls.isLocked === true) return;
         if (event.target.tagName !== "CANVAS") return;
         setMouse(event, width, height, mouse);
 
@@ -106,25 +86,32 @@ export const setMouseEvent = (width, height,
 
 };
 
-export const setButtonEvent = (camera, controls, scene, target, drag_target, room) => {
+export const setButtonEvent = (camera, viewControls, controls, scene, target, drag_target, room) => {
     document.getElementById("2D_MODE_btn").addEventListener("click", () => {
         room.view_mode = 2;
         room.is_person_view_mode = false;
+        removeCeiling(room);
         set2DMODE(camera, controls, room);
+        document.getElementById("ceiling_visibility").innerHTML = "Invisible";
         document.getElementById("mode_name").innerHTML = "view";
     });
 
     document.getElementById("3D_MODE_btn").addEventListener("click", () => {
         room.view_mode = 3;
         room.is_person_view_mode = false;
+        removeCeiling(room);
         set3DMODE(camera, controls, room);
+        document.getElementById("ceiling_visibility").innerHTML = "Invisible";
         document.getElementById("mode_name").innerHTML = "view";
     });
 
     document.getElementById("PersonView_btn").addEventListener("click", () => {
         room.view_mode = 3;
         room.is_person_view_mode = true;
-        setPersonViewMode(camera, controls, room);
+        addCeiling(room);
+        setPersonViewMode(viewControls, controls, room);
+        document.getElementById("ceiling_visibility").innerHTML = "Visible";
+
         document.getElementById("mode_name").innerHTML = "person view - use your keyboard(W, A, S, D)!!";
     })
 
@@ -177,6 +164,20 @@ export const setButtonEvent = (camera, controls, scene, target, drag_target, roo
         const window_size = { "x": 2, "y": 2, "z": 0.3 };
         const window_position = { "x": 0, "y": 1.7 };
         addWindow(wall.parent, window_id, window_size, window_position, wall.wall_type, wall.position, room.view_mode);
+    });
+
+    document.getElementById("Show_room_info").addEventListener("click", () => {
+        console.log(room);
+    });
+
+    document.getElementById("show_ceiling").addEventListener("click", () => {
+        addCeiling(room);
+        document.getElementById("ceiling_visibility").innerHTML = "Visible";
+    });
+
+    document.getElementById("hide_ceiling").addEventListener("click", () => {
+        removeCeiling(room);
+        document.getElementById("ceiling_visibility").innerHTML = "Invisible";
     });
 
     // 나중에 분리 필요
@@ -285,4 +286,29 @@ export const setInputEvent = (room, target) => {
         if (isNaN(size) || target.length === 0) return;
         resizeItem(target[0].object, size);
     });
+    document.getElementById("set_light_intensity").addEventListener("input", () => {
+        const intensity = parseFloat(document.getElementById("set_light_intensity").value);
+
+        if (isNaN(intensity)) return;
+        changeLightIntensity(room.parent.children[0], intensity);
+    });
+    document.getElementById("set_light_positionx").addEventListener("input", () => {
+        const positionX = parseInt(document.getElementById("set_light_positionx").value);
+
+        if (isNaN(positionX)) return;
+        setLightPositionX(room.parent.children[0], positionX);
+    });
+    document.getElementById("set_light_positiony").addEventListener("input", () => {
+        const positionY = parseInt(document.getElementById("set_light_positiony").value);
+
+        if (isNaN(positionY)) return;
+        setLightPositionY(room.parent.children[0], positionY);
+    });
+    document.getElementById("set_light_positionz").addEventListener("input", () => {
+        const positionZ = parseInt(document.getElementById("set_light_positionz").value);
+
+        if (isNaN(positionZ)) return;
+        setLightPositionZ(room.parent.children[0], positionZ);
+    });
+
 }

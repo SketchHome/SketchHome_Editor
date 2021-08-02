@@ -49,6 +49,35 @@ export const rotateObjectVertical = (target) => {
     temp.rotation.set(r_value, 0, 0);
 }
 
+const getItemPosition = (mesh, direction) => {
+    let min = 0;
+    switch (direction) {
+        case 'vertical' :
+            if (mesh.position.z <= 0) {
+                min = mesh.position.z - (mesh.scale.x / 2);
+                min *= (-2);
+            }
+            else {
+                min = mesh.position.z + (mesh.scale.x / 2);
+                min *= 2;
+            }
+            break;
+        case 'horizon' :
+            if (mesh.position.x <= 0) {
+                min = mesh.position.x - (mesh.scale.x / 2);
+                min *= (-2);
+            }
+            else {
+                min = mesh.position.x + (mesh.scale.x / 2);
+                min *= 2;
+            }
+            break;
+        default :
+            break;
+    }
+    return min;
+}
+
 export const resizeRoom = (room, width, height) => {
     room.children.forEach(group => {
         switch (group.name.split("_")[1]) {
@@ -72,10 +101,16 @@ export const resizeRoom = (room, width, height) => {
                 group.children[0].scale.setX(width);
                 group.children[0].scale.setZ(height);
                 break;
+            case "ceiling":
+                group.children[0].scale.setX(width);
+                group.children[0].scale.setZ(height);
             default:
                 break;
         }
     });
+
+    room.size.x = width;
+    room.size.z = height;
 }
 
 export const resizeItem = (item, size) => {
@@ -92,7 +127,45 @@ export const resizeItem = (item, size) => {
     if (item.parent.scale.y !== 0.0001) item.parent.scale.setY(real_size);
 }
 
+const limitWallSize = (wall) => {
+    let minValue = [];
+    if(wall.parent.children.length < 2) return;
+
+    wall.parent.children.forEach((mesh) => {
+        switch (mesh.name.split("_")[0]) {
+            case "door":
+                let minDoor = getItemPosition(mesh, wall.wall_type);
+                minValue.push(minDoor);
+                break;
+            case "window":
+                let minWindow = getItemPosition(mesh, wall.wall_type);
+                minValue.push(minWindow);
+                break;
+            default:
+                break;
+        }
+    });
+
+    minValue.sort().reverse();
+
+    switch (wall.wall_type) {
+        case "horizon":
+            document.getElementById('resize_width').setAttribute('min', minValue[0]);
+            break;
+        case "vertical":
+            document.getElementById('resize_height').setAttribute('min', minValue[0]);
+            break;
+        default :
+            break;
+    }
+
+    return minValue[0];
+}
+
 const resizeWall = (wall, width, height) => {
+    
+    limitWallSize(wall);
+
     switch (wall.wall_type) {
         case "horizon":
             wall.scale.setX(width);
@@ -194,4 +267,45 @@ const findAllObject = (obj) => {
 
         return temp;
     }
+}
+
+export const changeLightIntensity = (lightGroup, intensity) => {
+    lightGroup.children.forEach((light) => {
+        console.log(light);
+        light.intensity = intensity;
+    })
+}
+
+export const setLightPositionX = (lightGroup, positionX) => {
+    console.log(lightGroup.children[0]);
+    lightGroup.children.forEach((light) => {
+        light.position.x = positionX;
+    })
+}
+
+export const setLightPositionY = (lightGroup, positionY) => {
+    console.log(lightGroup.children[0]);
+    lightGroup.children.forEach((light) => {
+        light.position.y = positionY;
+    })
+}
+
+export const setLightPositionZ = (lightGroup, positionZ) => {
+    console.log(lightGroup.children[0]);
+    lightGroup.children.forEach((light) => {
+        light.position.z = positionZ;
+    })
+}
+
+export const removeCeiling = (room) => {
+    room.children.forEach((group) => {
+        if (group.name.split("_")[1] === "ceiling") {
+            if(group.children.length === 0) return;
+            group.children.forEach((mesh) => {
+                mesh.parent.remove(mesh);
+                mesh.geometry.dispose();
+            });
+            group.parent.remove(group);
+        }
+    });
 }
