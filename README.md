@@ -10,8 +10,8 @@ Refactoring this hompage
 ```bash
 ├── components
 |   ├── Login
-|       ├── OAuth.js
-|       └── SocailLogin.js
+|   |   ├── OAuth.js
+|   |   └── SocailLogin.js
 │   ├── DetailBtn.js
 │   ├── ImageTitle.js
 |   ├── Navbar.js
@@ -33,11 +33,11 @@ Refactoring this hompage
 │   └── SelectProblem.js
 ├── redux
 │   ├── modules
-|       └── user.js
+|   |   └── user.js
 │   └── store
-|       ├── modules
-|       ├── configure.js
-|       └── exportStore.js
+|   |   ├── modules
+|   |   ├── configure.js
+|   |   └── exportStore.js
 ├── resource
 │   ├── font
 │   └── image
