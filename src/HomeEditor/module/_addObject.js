@@ -21,6 +21,7 @@ export const addSquare = (scene) => {
     scene.add(cube);
 };
 
+//Error: issue 물체 추가가 되지 않음.
 export const addLoadObj = (room, obj_name, obj_path, size, position, id, dim) => {
     const mtl_loader = new MTLLoader();
     const obj_loader = new OBJLoader();

@@ -1,7 +1,7 @@
 const createTempItemList = () => {
     const fs = require("fs");
 
-    const data_path = "../../../public/3d_data";
+    const data_path = "./public/3d_data";
     
     fs.readdir(data_path, (err, files) => {
         //handling error
