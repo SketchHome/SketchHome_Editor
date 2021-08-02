@@ -1,0 +1,8 @@
+.Scene {
+    /* width: 700px;
+    height: 500px;
+    float: left; */
+    /* border: 5px solid #9ECA66 */
+}
+
+.Scene > canvas:focus {outline:none;}

@@ -1,0 +1,55 @@
+.TopMenu {
+    /* background-color: aqua; */
+    margin-bottom: 10px;
+}
+
+.Section_1 {
+    width: 85px;
+    height: 77px;
+    border: none;
+    vertical-align: bottom;
+    text-align: end;
+}
+
+.Section_1 > .Logo {
+    width: 56px;
+}
+
+.Section_2 {
+    width: 300px;
+    vertical-align: bottom;
+    border: none;
+}
+
+.Section_2 > .Title {
+    padding-left: 14px;
+    font-size: 28px;
+    font-weight: 520;
+}
+
+.Section_2 > .Subtitle {
+    padding-left: 14px;
+    font-size: 18px;
+}
+
+.Section_3 {
+    width: 400px;
+    text-align: center;
+    vertical-align: bottom;
+    padding-bottom: 20px;
+    border: none;
+}
+
+.Section_3 > .TopMenuItem {
+    display: inline-block;
+    width: 120px;
+    font-size: 25px;
+}
+
+
+.Hr {
+    background-color: #7D7D7D;
+    margin-left: 80px;
+    height: 1px;
+    width: 900px;
+}

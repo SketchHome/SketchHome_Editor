@@ -1,0 +1,42 @@
+.item_list_wrapper {
+    height: 510px;
+    overflow: auto;
+    float: left;
+    width: 300px;
+    background-color: #5E5E5E;
+}
+
+.item_list_wrapper > table {
+    margin: auto;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 40px;
+}
+
+.td_image {
+    width: 100px;
+    background-color: white;
+    border: 5px solid #9ECA66;
+
+    padding: 0;
+}
+
+.ImageWrapper {
+    margin: 10px;
+}
+
+.ItemImage {
+    width: 100%;
+    height: 100%;
+}
+
+.td_name {
+    width: 130px;
+    height: 50px;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+.td_image img {
+    width: 100%;
+}

@@ -8,7 +8,7 @@ const kakaoLogin = (code) => {
         })
         .then((res) => {
             //get token
-            console.log(res);
+            console.log("Token", res);
             
             const ACCESS_TOKEN = res.data.accessToken;
 

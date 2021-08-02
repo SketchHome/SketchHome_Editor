@@ -53,7 +53,6 @@ module.exports = {
 
   // 개발 서버 설정
   devServer: {
-    contentBase: './dist',
     host: 'localhost',
     port: port,
     open: true, // open page when start
