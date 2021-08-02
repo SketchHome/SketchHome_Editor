@@ -9,19 +9,19 @@ Refactoring this hompage
 - src directory structure
 ```bash
 ├── components
-|   ├── Login
-|   |   ├── OAuth.js
-|   |   └── SocailLogin.js
+│   ├── Login
+|   │   ├── OAuth.js
+|   │   └── SocailLogin.js
 │   ├── DetailBtn.js
 │   ├── ImageTitle.js
-|   ├── Navbar.js
+│   ├── Navbar.js
 │   └── index.css
 ├── HomeEditor
 │   ├── data
 │   ├── Detailer
 │   ├── Item
-|   ├── moudle
-|   ├── temp
+│   ├── moudle
+│   ├── temp
 │   └── Editor.js
 ├── Pages
 │   ├── Connect.js
@@ -33,11 +33,11 @@ Refactoring this hompage
 │   └── SelectProblem.js
 ├── redux
 │   ├── modules
-|   |   └── user.js
+|   │   └── user.js
 │   └── store
 |   |   ├── modules
-|   |   ├── configure.js
-|   |   └── exportStore.js
+|   │   ├── configure.js
+|   │   └── exportStore.js
 ├── resource
 │   ├── font
 │   └── image
