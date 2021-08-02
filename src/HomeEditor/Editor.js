@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import * as THREE from "three";
 import { DragControls } from "three/examples/jsm/controls/DragControls";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -81,13 +85,21 @@ class Editor extends Component {
 
 	render() {
 		return (
-			<div>
-				<div
-					className="Scene"
-					style={{ width: "900px", height: "400px" }}
-					ref={(mount) => { this.mount = mount }} />
-				<Detailer />
+			<Container fluid>
+				<div>
+					<Row>
+						<Col>	
+							<Detailer />
+						</Col>	
+						<Col>
+							<div
+							className="Scene"
+							style={{ width: "1000px", height: "90vh" }}
+							ref={(mount) => { this.mount = mount }} />
+						</Col>
+					</Row>
 			</div>
+			</Container>
 		)
 	}
 }
