@@ -38,6 +38,6 @@
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
     "style-loader": "^3.2.1",
-    "three": "^0.131.1"
+    "three": "^0.120.1"
   }
 }
