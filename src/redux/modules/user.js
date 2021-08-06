@@ -27,27 +27,28 @@ const kakaoLogin = (code) => {
             console.log("Access_Token :", ACCESS_TOKEN);
             console.log("Refresh_Token :", REFRESH_TOKEN);
 
-            //local store (temp)
-            // localStorage.setItem("token", ACCESS_TOKEN);
-
+            //store localstorage (temp)
+            localStorage.setItem("access_token", ACCESS_TOKEN);
+            localStorage.setItem("refresh_token", REFRESH_TOKEN);
            
-
             window.alert("Login success...");
             //get token -> change page to HOME
-            //history.replace("/home"); 
+            //getInformation(ACCESS_TOKEN);
 
-
-            getInformation(ACCESS_TOKEN);
+            if(location.pathname === '/login') {
+                history.push('/loginmain');
+            }
+            
         
         }).catch((err) => {
             console.log("Login error", err);
             window.alert("Login failed...");
-            //history.replace("/home");git 
+       
         });
     }
 };
 
-//문제가 발생했다 문제는... 하... 이걸 다시 분리해야할 것 같다 도희님께 도움을 구하자!
+//issue: get token information
 const getInformation = (accessToken) => {
     axios.get("https://kapi.kakao.com/v2/user/me", {
         headers: {
@@ -55,7 +56,6 @@ const getInformation = (accessToken) => {
         }
     }).then((data) => {
         window.alert("get information success!")
-        console.log(data);
 
     }).catch((error) => {
         console.log("get information failed", error);
@@ -66,5 +66,6 @@ const getInformation = (accessToken) => {
 };
 
 const actionCreators = { kakaoLogin }; 
+const getTokens = { getInformation }; 
 
-export { actionCreators }
+export { actionCreators, getTokens }
