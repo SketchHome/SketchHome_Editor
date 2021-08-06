@@ -49,3 +49,10 @@ Refactoring this hompage
 ├── .babelrc
 └── webpack.config.js
 ``` 
+
+- CORS ERROR 해결방법
+[Chrome 사용시 참고 방법:](https://footprint-of-nawin.tistory.com/37)
+경로 아래에 명령어 추가
+```
+--disable-web-security --user-data-dir="C:\chrome"
+```
