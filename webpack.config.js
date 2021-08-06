@@ -53,6 +53,10 @@ module.exports = {
 
   // 개발 서버 설정
   devServer: {
+    headers: { 
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+    },
     host: 'localhost',
     port: port,
     open: true, // open page when start

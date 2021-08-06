@@ -16,7 +16,6 @@ import EditorSelect from './pages/EditorSelect';
 import SelectProblem from './pages/SelectProblem';
 import Connect from './pages/Connect'
 import ExplainDetail from './pages/ExplainDetail';
-import LoginMain from './pages/LoginMain';
 
 //import design css
 import './components/index.css'
@@ -35,7 +34,6 @@ function App() {
           <Route path="/recommand" component={SelectProblem} />
           <Route path="/connect" component={Connect} />
           <Route path="/login" component={Login} />
-          <Route path="/loginmain" component={LoginMain} />
           <Route path="/explaindetail" component={ExplainDetail} />
         </Switch> 
       </BrowserRouter>

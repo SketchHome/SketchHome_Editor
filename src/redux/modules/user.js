@@ -33,12 +33,13 @@ const kakaoLogin = (code) => {
            
             window.alert("Login success...");
             //get token -> change page to HOME
-            //getInformation(ACCESS_TOKEN);
+            getInformation(ACCESS_TOKEN);
 
+            /*
             if(location.pathname === '/login') {
                 history.push('/loginmain');
             }
-            
+            */
         
         }).catch((err) => {
             console.log("Login error", err);
@@ -52,20 +53,23 @@ const kakaoLogin = (code) => {
 const getInformation = (accessToken) => {
     axios.get("https://kapi.kakao.com/v2/user/me", {
         headers: {
+            //kakao server에서 설정해 주어야 한다 -> CORS 문제
+            "Access-Control-Allow-Origin": "*",
             Authorization: `Bearer ${accessToken}`
         }
     }).then((data) => {
-        window.alert("get information success!")
+        console.log(data);
+        //issue: Data -> json 형식으로 분리 요청
+        //window.alert("get information success!")
 
     }).catch((error) => {
         console.log("get information failed", error);
-        window.alert("get information failed");
+        //window.alert("get information failed");
 
     });
-
 };
 
 const actionCreators = { kakaoLogin }; 
-const getTokens = { getInformation }; 
+const getTokens = { getInformation };
 
 export { actionCreators, getTokens }
