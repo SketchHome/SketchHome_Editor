@@ -18,13 +18,14 @@ import sample1 from '../resource/image/inteior1.jpg'
 
 //Component
 import EditorNav from '../components/EditorNavbar';
+import SideBar from '../components/Sidebar';
 
 function EditorRenewal() {
   return (
     <div>
       <EditorNav fileName="myfiles1"/>
       <Container fluid>
-        <p>hello</p>
+        <SideBar/>
         </Container>
       </div>
   );
