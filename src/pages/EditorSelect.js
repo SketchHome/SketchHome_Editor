@@ -18,9 +18,13 @@ import Col from 'react-bootstrap/Col';
 //css files
 import '../components/index.css';
 
+//component
+import Navbar from '../components/Navbar'
+
 function EditorSelect() {
   return (
     <div className="App">
+       <Navbar />
       <div className="alignMargin">
         <Row>
           <Col></Col>

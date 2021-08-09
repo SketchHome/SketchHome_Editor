@@ -164,6 +164,32 @@ a:hover{
     margin-left: 30px;
 }
 
+.buttonMargin {
+    margin-right: 5px;
+    height: 35px;
+    font-size: 18px;
+}
+
+input[type=radio] { 
+    appearance: none; 
+} 
+
+.fileName_font {
+    font-size: 18px;
+    margin-top: 3px;
+    margin-bottom: -10px;
+}
+
+.EditorNav {
+    font-family: "NanumSquare_acR";
+    background-color: #F8F9FA;
+
+}
+
+.marginTop {
+    padding: 10px;
+}
+
 /*font 모음*/
 @font-face {
     font-family: 'NanumSquare_acB';

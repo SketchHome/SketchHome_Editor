@@ -10,12 +10,12 @@ import store from './redux/store/exportStore';
 //import pages & components
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Navbar from './components/Navbar'
 import HomeEditor from './pages/HomeEditor';
 import EditorSelect from './pages/EditorSelect';
 import SelectProblem from './pages/SelectProblem';
 import Connect from './pages/Connect'
 import ExplainDetail from './pages/ExplainDetail';
+import Renewal from './pages/EditorRenewal';
 
 //import design css
 import './components/index.css'
@@ -24,7 +24,6 @@ function App() {
   return (
     <Provider store={store}>
     <div className="App">
-      <Navbar />
       <BrowserRouter>
         <Switch>
           <Route exact={true} path="/" component={Home}/>
@@ -34,6 +33,7 @@ function App() {
           <Route path="/recommand" component={SelectProblem} />
           <Route path="/connect" component={Connect} />
           <Route path="/login" component={Login} />
+          <Route path="/renewal" component={Renewal} />
           <Route path="/explaindetail" component={ExplainDetail} />
         </Switch> 
       </BrowserRouter>

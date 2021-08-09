@@ -14,9 +14,13 @@ import '../components/index.css';
 
 import logo from '../resource/image/sketchhome_logo_none.png';
 
+//component
+import Navbar from '../components/Navbar'
+
 function SelectProblem() {
   return (
     <div className="App">
+      <Navbar/>
       <div className="selectBox">
         <img src={logo} style={{margin:'20px', width:'150px'}}></img>
         <p style={{marginTop: '-15px', marginLeft: '20px', color: "gray", fontFamily: "NanumSquare_acR"}}>내 집을 가장 내 집 답게 만드는 방법</p>

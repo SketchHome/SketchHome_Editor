@@ -8,6 +8,9 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from "../redux/modules/user";
 import { Spinner } from 'react-bootstrap';
 
+//component
+import Navbar from '../components/Navbar'
+
 const Login = (props) => {
   //Dispatch: store에 있는 데이터를 컨트롤 하기 위함
   const dispatch = useDispatch();

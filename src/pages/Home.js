@@ -15,10 +15,12 @@ import sample1 from '../resource/image/inteior1.jpg'
 //Component
 import DetailBtn from '../components/DetailBtn'
 import ImageTitle from '../components/ImageTitle'
+import Navbar from '../components/Navbar'
 
 function Home() {
   return (
     <div className="colorDiv">
+       <Navbar/>
       <Container fluid>
           <br/><br/>
           <div style={{marginLeft: "-5vh", marginTop:"-20px"}}>
