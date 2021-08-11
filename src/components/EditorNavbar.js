@@ -27,20 +27,20 @@ function EditorNavigation(props) {
     return (
         <div className="EditorNav" className="EditorNav">
             <container>
-                <Row xs="5" className="marginTop">
+                <Row xs="5" className="marginTop" style={{width: "1920px"}}>
                     <Col xs="1">
                         <a href="/home"><img src={simpleLogo} style={{marginTop: "3px", marginLeft:'30px', width:'25px'}}></img></a>
                     </Col>
                     <Col>
                         <p className="fileName_font">{ props.fileName }</p>
                     </Col>
-                    <Col xs="3">
+                    <Col xs="3" style={{width: "200px", margin: "0px 150px 0px -100px"}}>
                         {/*Button list*/}
                         <Button variant="outline-success" className="buttonMargin"><BiUndo/></Button>{' '}
                         <Button variant="outline-success" className="buttonMargin"><BiRedo/></Button>{' '}
                         <Button variant="outline-success" className="buttonMargin"><BiSave/></Button>{' '}
                     </Col>
-                    <Col>
+                    <Col style={{width: "300px"}}>
                         <ToggleBtn
                         btnColor="outline-success"
                         n1="2D 뷰어"
