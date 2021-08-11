@@ -190,6 +190,7 @@ input[type=radio] {
 }
 
 .marginTop {
+    margin-left: -80px;
     padding: 10px;
 }
 

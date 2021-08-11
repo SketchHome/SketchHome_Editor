@@ -29,7 +29,7 @@ function EditorNavigation(props) {
             <Container>
                 <Row xs="5" className="marginTop" style={{width: "1920px"}}>
                     <Col xs="1">
-                        <a href="/home"><img src={simpleLogo} style={{marginTop: "3px", marginLeft:'30px', width:'25px'}}></img></a>
+                        <a href="/home"><img src={simpleLogo} style={{marginTop:"3px 0px 0px 30px", width:'25px'}}></img></a>
                     </Col>
                     <Col>
                         <p className="fileName_font">{ props.fileName }</p>
