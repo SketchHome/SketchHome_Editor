@@ -26,16 +26,6 @@ function Navigation() {
                 
                 {/*Kakao social Login function btn*/}
                 <KakaoLogin/>
-                
-                {/*
-                <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-primary" style={{marginLeft:'10px'}}>Search</Button>
-                    <BsFillBookmarkFill size='20' style={{marginLeft:'10px'}}></BsFillBookmarkFill>
-                    <BsFillBellFill size='20' style={{marginLeft:'10px'}}></BsFillBellFill>
-                    <BsFillBagFill size='20' style={{marginLeft:'10px'}}></BsFillBagFill>
-                </Form>
-                */}
             </Navbar>
 
         </div>

@@ -16,8 +16,6 @@ function ToggleButtonExample(props) {
     const [c2, setC2] = useState(green);
     const [c3, setC3] = useState(green);
   
-    const onClickTest = () => setC1(green);
-  
     const radios = [
       { name: props.n1 , value: '1' , icons: (props.i1 == "yes" ? <BiHome color={c1} size="35px" style={{marginBottom: "5px"}}/> : " ") },
       { name: props.n2 , value: '2' , icons: (props.i2 == "yes" ? <BiBed color={c2} size="35px" style={{marginBottom: "5px"}}/> : " ") },

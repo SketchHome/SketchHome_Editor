@@ -229,7 +229,7 @@ input[type=radio] {
   }
   .nav-menu {
     background-color: #F8F9FA;
-    width: 450px;
+    width: 500px;
     margin-top: 8vh;
     height: 100%;
     display:flex;
@@ -278,15 +278,37 @@ input[type=radio] {
     background-color: #A8BA8D;
     align-content: center;
   }
+
+  /*category*/
   .category-list {
     justify-content: center;
     font-family: 'NanumSquare_acR';
-    width: 100%;
+    width: 130px;
     height: 100%;
-    margin-left: 3px;
+    margin-left: 2px;
     padding: 0px 25px;
     font-size: 12px;
     text-align: center;
+  }
+  .category-select {
+    background-color: #A8BA8D;
+    width:100%;
+    height: 115px;
+    display: flex;
+    align-items: center;
+    padding: 9px;
+  }
+  .category-select-btns {
+    margin: 3px;
+    border-radius: 5px;
+    background-color: white;
+    border-width: 0px;
+    font-size: 14px;
+    height: 45px;
+    text-align: center;
+    opacity: 90%;
+    background-color: #818F6C;
+    color: white;
   }
   
 /*font 모음*/

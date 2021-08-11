@@ -21,6 +21,7 @@ import { SidebarList } from './SidebarList';
 
 //component
 import ToggleBtn from './toggleBtn';
+import SelectBtn from './clickBtn';
 
 function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
@@ -40,6 +41,7 @@ function Sidebar() {
         className={sidebar ? 'nav-menu active' : 'nav-menu'} 코드 들어가야함*/}
         <nav className='nav-menu active'>
             <ul className="nav-menu-items" onClick={showSidebar}>
+                {/*mode menu*/}
                 <li className="navbar-toggle">
                     <ToggleBtn
                         btnColor="outline-success"
@@ -51,7 +53,11 @@ function Sidebar() {
                         n3={<div className="category-list">가구 편집하기</div>}
                         border= "0px"
                         />
-                    </li>
+                </li>
+                {/*room - select btn bar*/}
+                <li className="category-select">
+                    <SelectBtn/>
+                </li>
                     {SidebarList.map((item, index) => {
                         {/*인테리어 tab - 가구 선택 카테고리*/}
                         return (

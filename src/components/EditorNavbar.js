@@ -26,7 +26,7 @@ import simpleLogo from '../resource/image/simple_logo.png';
 function EditorNavigation(props) {
     return (
         <div className="EditorNav" className="EditorNav">
-            <container>
+            <Container>
                 <Row xs="5" className="marginTop" style={{width: "1920px"}}>
                     <Col xs="1">
                         <a href="/home"><img src={simpleLogo} style={{marginTop: "3px", marginLeft:'30px', width:'25px'}}></img></a>
@@ -52,7 +52,7 @@ function EditorNavigation(props) {
                         <Button variant="success" style={{position: 'absolute', right: 0, marginRight: "30px"}}><BiScan/> 렌더링 하기</Button>{' '}
                     </Col>
                 </Row>
-            </container>
+            </Container>
         </div>
     );
 }
