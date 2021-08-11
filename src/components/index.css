@@ -178,11 +178,13 @@ input[type=radio] {
     font-size: 18px;
     margin-top: 3px;
     margin-bottom: -10px;
+    margin-left: 30px;
 }
 
 .EditorNav {
     font-family: "NanumSquare_acR";
     background-color: #F8F9FA;
+    box-shadow: 5px 0.5px 10px 5px rgb(238, 238, 238);
 }
 
 .marginTop {
@@ -271,6 +273,9 @@ input[type=radio] {
     margin-top: 200px;
     background-color: #A8BA8D;
     align-content: center;
+  }
+  .category-list {
+      background-color: blue;
   }
 
 /*font 모음*/

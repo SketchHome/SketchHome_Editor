@@ -40,23 +40,35 @@ function Sidebar() {
             <BsCaretRightFill style={{marginTop: "20px", marginLeft: "10px", fontSize: "30px"}} color="#51751B" onClick={showSidebar} />
         </div>
 
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+        {/*test 할때만 toggle unlock :
+        className={sidebar ? 'nav-menu active' : 'nav-menu'} 코드 들어가야함*/}
+        <nav className='nav-menu active'>
             <ul className="nav-menu-items" onClick={showSidebar}>
                 <li className="navbar-toggle">
-                <BsCaretLeftFill 
-                style={{marginTop: "20px", marginLeft: "10px", fontSize: "30px"}}
-                color="#51751B"/>
-                </li>
-                {/*push list (Data)*/}
-                {SidebarList.map((item, index) => {
-                    return (
-                        <li key={index} className={item.cName}>
-                            <Link to={item.path}>
-                                <span>{item.title}</span>
-                            </Link>
-                        </li>
-                    );
-                })}
+                    {/*선택 카테고리*/}
+                    <Container className="category-list">
+                        <Row>
+                            <Col></Col>
+                            <Col></Col>
+                            <Col></Col>
+                        </Row>
+                    </Container>
+                    </li>
+                    {SidebarList.map((item, index) => {
+                        {/*인테리어 tab - 가구 선택 카테고리*/}
+                        return (
+                            <li key={index} className={item.cName}>
+                                <Link to={item.path}>
+                                    <span>{item.title}</span>
+                                </Link>
+                            </li>
+                        );
+                    })}
+                    <div style={{right: "0", position: "absolute", marginRight: "20px"}}>
+                    <BsCaretLeftFill 
+                    style={{marginRight: "10px", fontSize: "30px"}}
+                    color="#51751B"/>
+                    </div>
             </ul>
         </nav> 
         </IconContext.Provider>

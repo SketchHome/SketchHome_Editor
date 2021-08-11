@@ -28,13 +28,13 @@ function EditorNavigation(props) {
         <div className="EditorNav" className="EditorNav">
             <container>
                 <Row xs="5" className="marginTop">
-                    <Col>
+                    <Col xs="1">
                         <a href="/home"><img src={simpleLogo} style={{marginTop: "3px", marginLeft:'30px', width:'25px'}}></img></a>
                     </Col>
                     <Col>
                         <p className="fileName_font">{ props.fileName }</p>
                     </Col>
-                    <Col>
+                    <Col xs="3">
                         {/*Button list*/}
                         <Button variant="outline-success" className="buttonMargin"><BiUndo/></Button>{' '}
                         <Button variant="outline-success" className="buttonMargin"><BiRedo/></Button>{' '}
