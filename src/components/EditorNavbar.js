@@ -41,7 +41,12 @@ function EditorNavigation(props) {
                         <Button variant="outline-success" className="buttonMargin"><BiSave/></Button>{' '}
                     </Col>
                     <Col>
-                        <ToggleBtn/>
+                        <ToggleBtn
+                        btnColor="outline-success"
+                        n1="2D 뷰어"
+                        n2="편집 모드"
+                        n3="3D 뷰어"
+                        />
                     </Col>
                     <Col>
                         <Button variant="success" style={{position: 'absolute', right: 0, marginRight: "30px"}}><BiScan/> 렌더링 하기</Button>{' '}

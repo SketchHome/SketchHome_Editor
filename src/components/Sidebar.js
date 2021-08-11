@@ -9,15 +9,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 //icons
-import { BiUndo } from "react-icons/bi";//rollforward
-import { BiRedo } from "react-icons/bi"; //rollback
-import { BiSave } from "react-icons/bi"; //save
-import { BiScan } from "react-icons/bi"; //scan
 import { BsCaretRightFill } from "react-icons/bs";
 import { BsCaretLeftFill } from "react-icons/bs";
 import { IconContext } from 'react-icons';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 
 //style
 import './index.css'
@@ -25,6 +19,8 @@ import './index.css'
 //source
 import { SidebarList } from './SidebarList';
 
+//component
+import ToggleBtn from './toggleBtn';
 
 function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
@@ -45,14 +41,16 @@ function Sidebar() {
         <nav className='nav-menu active'>
             <ul className="nav-menu-items" onClick={showSidebar}>
                 <li className="navbar-toggle">
-                    {/*선택 카테고리*/}
-                    <Container className="category-list">
-                        <Row>
-                            <Col></Col>
-                            <Col></Col>
-                            <Col></Col>
-                        </Row>
-                    </Container>
+                    <ToggleBtn
+                        btnColor="outline-success"
+                        i1="yes"
+                        i2="yes"
+                        i3="yes"
+                        n1={<div className="category-list">방 설정하기</div>}
+                        n2={<div className="category-list">인테리어 하기</div>}
+                        n3={<div className="category-list">가구 편집하기</div>}
+                        border= "0px"
+                        />
                     </li>
                     {SidebarList.map((item, index) => {
                         {/*인테리어 tab - 가구 선택 카테고리*/}
