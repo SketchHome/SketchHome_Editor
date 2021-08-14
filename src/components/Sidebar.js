@@ -22,6 +22,12 @@ import { SidebarList } from './SidebarList';
 //component
 import ToggleBtn from './toggleBtn';
 import SelectBtn from './clickBtn';
+import SearchBar from './SearchBar';
+
+//interior tab
+function interior() {
+
+}
 
 function Sidebar() {
     const [sidebar, setSidebar] = useState(false);
@@ -53,8 +59,9 @@ function Sidebar() {
                     <SelectBtn/>
                 </li>
                 <div className="scroll">
-                    {SidebarList.map((item, index) => {
-                        {/*인테리어 tab - 가구 선택 카테고리*/}
+                    <SearchBar/>
+                    {/*인테리어 tab - 가구 선택 카테고리*/}
+                    {/*SidebarList.map((item, index) => {
                         return (
                             <li key={index} className={item.cName}>
                                 <Link to={item.path}>
@@ -63,6 +70,7 @@ function Sidebar() {
                             </li>
                         );
                     })}
+                    */}
                 </div>
             </ul>
              {/*toggle Sidebar*/}

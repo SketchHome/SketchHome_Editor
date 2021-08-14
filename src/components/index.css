@@ -236,7 +236,7 @@ input[type=radio] {
     display:flex;
     position:fixed;
     top:0;
-    left:-66.5vh;
+    left:-67vh;
     transition: 850ms;
   }
   .nav-menu.active {
@@ -322,6 +322,12 @@ input[type=radio] {
 
   .scroll::-webkit-scrollbar {
       display: none;
+  }
+
+  .search-bar {
+      width: 90%;
+      height: 50px;
+      margin: 25px;
   }
   
 /*font 모음*/
