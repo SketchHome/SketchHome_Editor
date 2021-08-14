@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "proxy" : "https://kapi.kakao.com",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server"
@@ -29,7 +28,6 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
     "css-loader": "^6.2.0",
-    "http-proxy-middleware": "^0.19.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",

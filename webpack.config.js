@@ -53,13 +53,15 @@ module.exports = {
 
   // 개발 서버 설정
   devServer: {
-    headers: { 
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-    },
+    historyApiFallback: true, //react-router같은 거 쓸 때 새로고침 시 cannot GET/signup 에러 뜨는 것 해결
     host: 'localhost',
     port: port,
     open: true, // open page when start
-    historyApiFallback: true,
+    proxy: {
+      '/v2/user/me':{
+        target : 'https://kapi.kakao.com',
+        changeOrigin: true,
+      }
+    }
   },
 };
