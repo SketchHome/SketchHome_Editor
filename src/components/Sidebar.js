@@ -31,15 +31,9 @@ function Sidebar() {
         <>
         <IconContext.Provider value={{ color: "black"}}>
 
-        {/*toggle Sidebar*/}
-        <div className="toggleBtn">
-            {/*<Link to="#" className="menu-bars"></Link>*/}
-            <BsCaretRightFill style={{marginTop: "20px", marginLeft: "10px", fontSize: "30px"}} color="#51751B" onClick={showSidebar} />
-        </div>
-
         {/*test 할때만 toggle unlock :
         className={sidebar ? 'nav-menu active' : 'nav-menu'} 코드 들어가야함*/}
-        <nav className='nav-menu active'>
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className="nav-menu-items" onClick={showSidebar}>
                 {/*mode menu*/}
                 <li className="navbar-toggle">
@@ -58,6 +52,7 @@ function Sidebar() {
                 <li className="category-select">
                     <SelectBtn/>
                 </li>
+                <div className="scroll">
                     {SidebarList.map((item, index) => {
                         {/*인테리어 tab - 가구 선택 카테고리*/}
                         return (
@@ -68,13 +63,15 @@ function Sidebar() {
                             </li>
                         );
                     })}
-                    <div style={{right: "0", position: "absolute", marginRight: "20px"}}>
-                    <BsCaretLeftFill 
-                    style={{marginRight: "10px", fontSize: "30px"}}
-                    color="#51751B"/>
-                    </div>
+                </div>
             </ul>
+             {/*toggle Sidebar*/}
+            <div className="toggleBtn">
+                {/*<Link to="#" className="menu-bars"></Link>*/}
+                <BsCaretRightFill style={{marginTop: "20px", marginLeft: "5px", marginRight: "5px", fontSize: "30px"}} color="#51751B" onClick={showSidebar} />
+            </div>
         </nav> 
+        
         </IconContext.Provider>
         </>
     );

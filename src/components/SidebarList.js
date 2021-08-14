@@ -57,5 +57,5 @@ export const SidebarList = [
     path: '/Contact',
     icon: <BsIcons.BsEnvelopeFill />,
     cName: 'nav-text'
-  }
+  },
 ];
