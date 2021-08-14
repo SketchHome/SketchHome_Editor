@@ -51,10 +51,10 @@ const kakaoLogin = (code) => {
 
 //issue: get token information
 const getInformation = (accessToken) => {
-    axios.get("https://kapi.kakao.com/v2/user/me", {
+    axios.get("/v2/user/me", { //https://kapi.kakao.com/v2/user/me
         headers: {
             //kakao server에서 설정해 주어야 한다 -> CORS 문제
-            "Access-Control-Allow-Origin": "*",
+            // "Access-Control-Allow-Origin": "*",
             Authorization: `Bearer ${accessToken}`
         }
     }).then((data) => {
