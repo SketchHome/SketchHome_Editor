@@ -40,7 +40,7 @@ function Sidebar() {
         {/*test 할때만 toggle unlock :
         className={sidebar ? 'nav-menu active' : 'nav-menu'} 코드 들어가야함*/}
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className="nav-menu-items" onClick={showSidebar}>
+            <ul className="nav-menu-items">
                 {/*mode menu*/}
                 <li className="navbar-toggle">
                     <ToggleBtn
