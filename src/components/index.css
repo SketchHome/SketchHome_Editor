@@ -356,6 +356,20 @@ input[type=radio] {
     border-radius: 0px 0px 10px 10px;
 }
 
+.List-top > input[type=radio]:checked{
+   
+}
+
+.List-top > input[type=radio]{
+    width: 30px;
+    height: 30px;
+    
+}
+
+.radioTrue {
+    margin-left: 125px;
+    margin-top: 5px;
+}
 
 /*font 모음*/
 @font-face {
