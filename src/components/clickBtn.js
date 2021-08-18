@@ -28,7 +28,7 @@ function clickBtn(props) {
                     id={`radio-${idx}`}
                     type="radio"
                     variant={idx % 2 ? 'outline-light' : 'outline-light'}
-                    name="radio"
+                    name="detail"
                     value={radio.value}
                     checked={radioValue === radio.value}
                     onChange={(e) => setRadioValue(e.currentTarget.value)}

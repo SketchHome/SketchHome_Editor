@@ -16,13 +16,13 @@ import { IconContext } from 'react-icons';
 //style
 import './index.css'
 
-//source
-import { SidebarList } from './SidebarList';
-
 //component
 import ToggleBtn from './toggleBtn';
 import SelectBtn from './clickBtn';
-import SearchBar from './SearchBar';
+
+//Select Component_click시 전환 페이지
+import Category from './SideBarSelect/Category';
+import Selectitem from './SideBarSelect/Selectitem';
 
 //interior tab
 function interior() {
@@ -39,7 +39,7 @@ function Sidebar() {
 
         {/*test 할때만 toggle unlock :
         className={sidebar ? 'nav-menu active' : 'nav-menu'} 코드 들어가야함*/}
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+        <nav className='nav-menu active'>
             <ul className="nav-menu-items">
                 {/*mode menu*/}
                 <li className="navbar-toggle">
@@ -58,19 +58,10 @@ function Sidebar() {
                 <li className="category-select">
                     <SelectBtn/>
                 </li>
+                {/*Select view*/}
                 <div className="scroll">
-                    <SearchBar/>
-                    {/*인테리어 tab - 가구 선택 카테고리*/}
-                    {/*SidebarList.map((item, index) => {
-                        return (
-                            <li key={index} className={item.cName}>
-                                <Link to={item.path}>
-                                    <span>{item.title}</span>
-                                </Link>
-                            </li>
-                        );
-                    })}
-                    */}
+                    <Selectitem/>
+                    
                 </div>
             </ul>
              {/*toggle Sidebar*/}

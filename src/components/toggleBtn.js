@@ -50,7 +50,7 @@ function ToggleButtonExample(props) {
                 id={`radio-${idx}`}
                 type="radio"
                 variant={idx % 2 ? 'outline-success' : props.btnColor}
-                name="radio"
+                name="Menu"
                 value={radio.value}
                 checked={radioValue === radio.value}
                 onChange={(e) => setRadioValue(e.currentTarget.value)}
