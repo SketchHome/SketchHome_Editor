@@ -1,8 +1,10 @@
 import { setMouse, setTarget } from "./_target"
 import { setDragTarget, relocateDragTarget } from "./_drag";
 import { set2DMODE, set3DMODE, setZoomMode, setDragMode, setPersonViewMode } from "./_mode";
-import { changeFloorColor, changeWallColor, removeObject, resizeRoom, rotateObjectHorizon, rotateObjectVertical, hexToRgb, resizeItem, exportRoom, changeLightIntensity, setLightPositionX, setLightPositionY, setLightPositionZ, removeCeiling} from "./_common";
-import { addCeiling, addDoor, addLoadObj, addWindow } from "./_addObject"
+import { changeFloorColor, changeWallColor, changeFloorTexture, removeItem, resizeRoom, rotateObjectHorizon, rotateObjectVertical, hexToRgb, resizeItem, exportRoom, changeLightIntensity, setLightPositionX, setLightPositionY, setLightPositionZ, removeCeiling, changeWallTexture, resizeWallTextureModeChange, removeRoom, changeItemRoomGroup } from "./_common";
+import { addCeiling, addDoor, addLoadObj, addWindow, addRoom } from "./_addObject"
+import { saveStatus } from "./_save"
+import { contextMenu, removeContextMenu } from "./_contextMenu";
 
 export const setKeyboardEvent = (viewControls, controls, raycaster, camera, scene, room) => {
 
@@ -28,6 +30,8 @@ export const setKeyboardEvent = (viewControls, controls, raycaster, camera, scen
                 case "Escape" :
                     viewControls.isLocked = false;
                     break;
+                default :
+                    break;
             }
         }
 
@@ -39,96 +43,170 @@ export const setKeyboardEvent = (viewControls, controls, raycaster, camera, scen
 
 export const setMouseEvent = (width, height,
     mouse, viewControls, camera, scene, raycaster,
-    target, drag_target, dragControls, room) => {
+    target, drag_target, dragControls, room, context_target) => {
 
     // normal click event - set target 		
-    window.addEventListener("mousedown", (event) => {
+    // window.addEventListener("mousedown", (event) => {
+    //     if (viewControls.isLocked === true) return;
+    //     if (event.target.tagName !== "CANVAS") return;
+    //     if (room.is_edit_mode !== true) return;
+    //     setMouse(event, width, height, mouse);
+
+    //     raycaster.setFromCamera(mouse, camera);
+    //     let intersects = raycaster.intersectObjects(scene.children, true);
+    //     intersects = intersects.filter(value => {
+    //         return value.object.name !== "grid"
+    //     })
+
+    //     setTarget(intersects, target, drag_target, room.edit_mode, room.view_mode);
+    // }, false);
+
+    // click event
+    window.addEventListener("click", (event) => {
         if (viewControls.isLocked === true) return;
         if (event.target.tagName !== "CANVAS") return;
+        if (room.is_edit_mode !== true) return;
         setMouse(event, width, height, mouse);
 
         raycaster.setFromCamera(mouse, camera);
-        const intersects = raycaster.intersectObjects(scene.children, true);
-        setTarget(intersects, target, drag_target);
+        let intersects = raycaster.intersectObjects(scene.children, true);
+        intersects = intersects.filter(value => {
+            return value.object.name !== "grid"
+        })
+
+        setTarget(intersects, target, drag_target, room.edit_mode, room);
+        contextMenu(target, context_target, room.edit_mode, room.view_mode, event, drag_target);
     }, false);
 
     // special click event - set drag target 		
     window.addEventListener("contextmenu", (event) => {
         event.preventDefault();
         if (event.target.tagName !== "CANVAS") return;
+        if (room.is_edit_mode !== true) return;
         setMouse(event, width, height, mouse);
 
         raycaster.setFromCamera(mouse, camera);
-        const intersects = raycaster.intersectObjects(scene.children, true);
-        setDragTarget(intersects, target, drag_target);
+        let intersects = raycaster.intersectObjects(scene.children, true);
+        intersects = intersects.filter(value => {
+            return value.object.name !== "grid"
+        })
+        setDragTarget(intersects, target, drag_target, room.edit_mode, room.view_mode);
+        removeContextMenu(context_target);
     }, false);
 
     // let current_postion;
-    dragControls.addEventListener("dragstart", (event) => {
+    dragControls.addEventListener("dragstart", () => {
         console.log("drag start");
         dragControls.enabled = true;
         // current_postion = event.object.position;
     });
 
     dragControls.addEventListener("drag", (event) => {
-        if (drag_target.length === 0) {
-            dragControls.enabled = false;
-            return;
-        }
-
         relocateDragTarget(event.object, room.view_mode);
     });
 
-    dragControls.addEventListener("dragend", (event) => {
+    dragControls.addEventListener("dragend", () => {
+        if (room.edit_mode === 'item') {
+            changeItemRoomGroup(target[0].object.parent, room);
+        }
         console.log("drag end");
         dragControls.enabled = false;
     });
 
 };
 
-export const setButtonEvent = (camera, viewControls, controls, scene, target, drag_target, room) => {
+export const setButtonEvent = (camera, viewControls, controls, mapControls, scene, target, drag_target, room, light, context_target) => {
+
     document.getElementById("2D_MODE_btn").addEventListener("click", () => {
+        document.getElementById("ceiling_visibility").innerHTML = "Invisible";
         room.view_mode = 2;
         room.is_person_view_mode = false;
-        removeCeiling(room);
-        set2DMODE(camera, controls, room);
-        document.getElementById("ceiling_visibility").innerHTML = "Invisible";
+        room.is_edit_mode = false;
+        room.is_zoom_mode = true;
+        if (room.children.length > 0)
+            room.children.forEach(_room => {
+                set2DMODE(mapControls, controls, _room);
+                removeCeiling(_room);
+            });
         document.getElementById("mode_name").innerHTML = "view";
+        scene.children.forEach((group) => {
+            if (group.name.split("_")[1] === "grid") group.children[0].visible = true;
+        });
     });
 
-    document.getElementById("3D_MODE_btn").addEventListener("click", () => {
+    document.getElementById("3D_MODE_btn").addEventListener("click", () => {        
+        document.getElementById("ceiling_visibility").innerHTML = "Invisible";
+
         room.view_mode = 3;
         room.is_person_view_mode = false;
-        removeCeiling(room);
-        set3DMODE(camera, controls, room);
-        document.getElementById("ceiling_visibility").innerHTML = "Invisible";
+        room.is_edit_mode = false;
+        room.is_zoom_mode = true;
+        if (room.children.length > 0)
+            room.children.forEach(_room => {
+                set3DMODE(mapControls, controls, _room);
+                removeCeiling(_room);
+                resizeWallTextureModeChange(_room);
+            });
         document.getElementById("mode_name").innerHTML = "view";
+        scene.children.forEach((group) => {
+            if (group.name.split("_")[1] === "grid") group.children[0].visible = false;
+        });
+        removeContextMenu(context_target);
     });
 
     document.getElementById("PersonView_btn").addEventListener("click", () => {
+        document.getElementById("ceiling_visibility").innerHTML = "Visible";
+        
         room.view_mode = 3;
         room.is_person_view_mode = true;
-        addCeiling(room);
-        setPersonViewMode(viewControls, controls, room);
-        document.getElementById("ceiling_visibility").innerHTML = "Visible";
+        room.is_edit_mode = false;
+        room.is_zoom_mode = false;
 
+        if (room.children.length > 0)
+            room.children.forEach(_room => {
+                setPersonViewMode(viewControls, mapControls, controls, _room);
+                addCeiling(_room);
+                resizeWallTextureModeChange(_room);
+            });
+      
         document.getElementById("mode_name").innerHTML = "person view - use your keyboard(W, A, S, D)!!";
+        scene.children.forEach((group) => {
+            if (group.name.split("_")[1] === "grid") group.children[0].visible = false;
+        });
+        removeContextMenu(context_target);
     })
 
-    document.getElementById("EDIT_MODE_btn").addEventListener("click", () => {
-        setDragMode(controls);
-        document.getElementById("mode_name").innerHTML = "edit";
+    document.getElementById("ROOM_EDIT_MODE_btn").addEventListener("click", () => {
+        room.is_person_view_mode = false;
+        room.edit_mode = 'room';
+        room.is_edit_mode = true;
+        room.is_zoom_mode = false;
+        setDragMode(controls, mapControls);
+        document.getElementById("mode_name").innerHTML = "room edit";
     });
 
+    document.getElementById("ITEM_EDIT_MODE_btn").addEventListener("click", () => {
+        room.is_person_view_mode = false;
+        room.edit_mode = 'item';
+        room.is_edit_mode = true;
+        room.is_zoom_mode = false;
+        setDragMode(controls, mapControls);
+        document.getElementById("mode_name").innerHTML = "item edit";
+    });
+
+
     document.getElementById("ZOOM_MODE_btn").addEventListener("click", () => {
-        setZoomMode(controls, room.view_mode);
+        room.is_person_view_mode = false;
+        setZoomMode(controls, mapControls, room.view_mode);
         document.getElementById("mode_name").innerHTML = "view";
     });
 
     document.getElementById("REMOVE_btn").addEventListener("click", () => {
         if (target.length === 0) return;
+        if (room.is_edit_mode === false) return;
 
-        removeObject(scene, target, drag_target);
+        if (room.edit_mode === 'room') removeRoom(target, drag_target);
+        if (room.edit_mode === 'item') removeItem(target, drag_target);
         document.getElementById("target_name").innerHTML = "";
     }, false);
 
@@ -142,6 +220,22 @@ export const setButtonEvent = (camera, viewControls, controls, scene, target, dr
         if (target.length === 0) return;
 
         rotateObjectVertical(target);
+    });
+
+    document.getElementById("Add_Room_btn").addEventListener("click", () => {
+        if (room.is_edit_mode) {
+            const default_wall = [['top', 'horizon'], ['bottom', 'horizon'], ["right", 'vertical'], ["left", 'vertical']];
+            const default_room = {
+                    "id": "room_3312",
+                    "type": "square",
+                    "position": {"x": 8, "y": 0, "z": 2},
+                    "size": {"x": 5, "y": 3, "z": 5},
+                    "wall": default_wall.map((info, i) => {return {"id": `wall_${i}`, "type": info[1], "direction": info[0], "door":[], "window": []}}),
+                    "item": []
+                }
+
+			addRoom(room, default_room, room.view_mode);
+        }
     });
 
     document.getElementById("Add_door_btn").addEventListener("click", () => {
@@ -166,17 +260,39 @@ export const setButtonEvent = (camera, viewControls, controls, scene, target, dr
         addWindow(wall.parent, window_id, window_size, window_position, wall.wall_type, wall.position, room.view_mode);
     });
 
-    document.getElementById("Show_room_info").addEventListener("click", () => {
-        console.log(room);
+    document.getElementById("SAVE_btn").addEventListener("click", () => {
+        saveStatus(room);
     });
 
+    document.getElementById("Show_room_info").addEventListener("click", () => {
+        console.log(room);
+        room.children.forEach((room_group) => {
+            console.log(room_group);
+        })
+    });
+
+    document.getElementById("Show_light_info").addEventListener("click", () => {
+        console.log(light);
+    });
+    document.getElementById("show_grid").addEventListener("click", () => {
+        scene.children.forEach((group) => {
+            if (group.name.split("_")[1] === "grid") {
+                group.children[0].visible = !group.children[0].visible;
+            }
+        });
+    })
+
     document.getElementById("show_ceiling").addEventListener("click", () => {
-        addCeiling(room);
+        room.children.forEach((room_group) => {
+            addCeiling(room_group);
+        });
         document.getElementById("ceiling_visibility").innerHTML = "Visible";
     });
 
     document.getElementById("hide_ceiling").addEventListener("click", () => {
-        removeCeiling(room);
+        room.children.forEach((room_group) => {
+            removeCeiling(room_group);
+        })
         document.getElementById("ceiling_visibility").innerHTML = "Invisible";
     });
 
@@ -187,14 +303,40 @@ export const setButtonEvent = (camera, viewControls, controls, scene, target, dr
     const elements = document.getElementsByClassName("Add_item_btn");
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener("click", (e) => {
-            const item_name = e.target.getAttribute("item_name");
-            const item_path = e.target.getAttribute("item_path") + "/";
-            const item_size = item_size_info["sofa"];
-            const item_position = { "x": 0, "y": 0, "z": 0 };
-            const item_id = "item";
+            if (room.edit_mode === 'room' && target.length !== 0) {
+                
+                const item_name = e.target.getAttribute("item_name");
+                const item_path = e.target.getAttribute("item_path") + "/";
+                const item_size = item_size_info["sofa"];
+                const item_position = target[0].object.room_position;
+                const item_id = "item";
 
-            addLoadObj(room, item_name, item_path, item_size, item_position, item_id, room.view_mode);
+                addLoadObj(target[0].object, item_name, item_path, item_size, item_position, item_id, room.view_mode);
+            }
+            
         }, false);
+    }
+  
+    const floorElements = document.getElementsByClassName("Add_floor_btn");
+    for(let i = 0; i < floorElements.length; i++){
+        floorElements[i].addEventListener("click", (e) => {
+            const item_path = e.target.getAttribute("item_path") + ".jpg";
+
+            if(target.length === 0) return;
+            
+            changeFloorTexture(target[0].object, item_path);
+        })
+    }
+
+    // change wall texture
+    const wallTextures = document.getElementsByClassName("Add_wall_texture_btn");
+    for (var i = 0; i < wallTextures.length; i++) {
+        wallTextures[i].addEventListener("click", (e) => {
+            const texture_path = e.target.getAttribute("texture_path");
+            if (target.length !== 0) {
+                changeWallTexture(target[0].object, texture_path);
+            }
+        });
     }
 
     // change floor color
@@ -268,16 +410,22 @@ export const setInputEvent = (room, target) => {
         const width = parseFloat(document.getElementById("resize_width").value);
         const height = parseFloat(document.getElementById("resize_height").value);
 
+        document.getElementById("room_width").innerHTML = width;
+
         if (isNaN(width) || isNaN(height)) return;
-        resizeRoom(room, width, height);
+        if (target.length === 0) return;
+        resizeRoom(target[0].object, width, height);
     });
 
     document.getElementById("resize_height").addEventListener("input", () => {
         const width = parseFloat(document.getElementById("resize_width").value);
         const height = parseFloat(document.getElementById("resize_height").value);
 
+        document.getElementById("room_height").innerHTML = height;
+
         if (isNaN(width) || isNaN(height)) return;
-        resizeRoom(room, width, height);
+        if (target.length === 0) return;
+        resizeRoom(target[0].object, width, height);
     });
 
     document.getElementById("resize_item").addEventListener("input", () => {

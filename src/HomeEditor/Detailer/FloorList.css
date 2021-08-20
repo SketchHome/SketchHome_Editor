@@ -1,0 +1,5 @@
+.floor_table {
+    height: 100px;
+    width: 300px;
+    overflow: auto;
+}

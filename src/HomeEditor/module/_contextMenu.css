@@ -1,0 +1,21 @@
+.contextmenu {
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    background-color: white;
+    display: flex;
+    position: absolute;
+    border: 1px solid black;
+}
+
+.contextmenu-button {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.contextmenu-button:hover {
+    background-color: gray;
+}

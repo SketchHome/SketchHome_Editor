@@ -1,3 +1,4 @@
+import { showRoomInfo } from "./_common";
 import { removeDragTarget } from "./_drag"
 
 export const setMouse = (event, width, height, mouse) => {
@@ -6,60 +7,78 @@ export const setMouse = (event, width, height, mouse) => {
     mouse.y = - ((event.clientY - canvas_position.top) / height) * 2 + 1;
 };
 
-export const setTarget = (intersects, target, drag_target) => {
-    if (target.length === 0 && intersects.length > 0) {
-        addTarget(target, intersects[0].object);
+export const setTarget = (intersects, target, drag_target, edit_mode, rooms) => {
+    if (intersects.length > 0) {
+        if (target.length === 0) {
+            addTarget(target, intersects[0].object, edit_mode, rooms);
+        }
+        else {
+            const temp_target = intersects[0].object;
+            switch (edit_mode) {
+                case 'room':
+                    if ((target[0].object.name !== temp_target.name) || (target[0].object.name !== temp_target.parent.room_name)) {
+                    // if (target[0].object.name !== temp_target.parent.room_name) {
+                        removeTarget(target);
+                        removeDragTarget(drag_target);
+                        addTarget(target, intersects[0].object, edit_mode, rooms);
+                        showRoomInfo(target[0].object);
+                    }
+                    break
+                case 'item':
+                    if (target[0].object.uuid !== temp_target.uuid) {
+                        removeTarget(target);
+                        removeDragTarget(drag_target);
+                        addTarget(target, intersects[0].object, edit_mode, rooms);
+                    }
+                    break
+                default:
+                    break
+            }
+        }
     }
-    else if (target.length !== 0 && intersects.length === 0) {
+    else if (intersects.length === 0) {
         removeTarget(target);
         removeDragTarget(drag_target);
-        document.getElementById("target_name").innerHTML = "";
-    }
-    else if (target.length !== 0 && intersects.length > 0) {
-        if (target[0].object.uuid !== intersects[0].object.uuid) {
-            removeTarget(target);
-            removeDragTarget(drag_target);
-            addTarget(target, intersects[0].object);
-        }
+        document.getElementById("target_name").innerHTML = '';
     }
 };
 
-const addTarget = (target, object) => {
-    let color;
-    if (object.name === "load_object_part") {
-        color = {
-            r: object.material.color.r,
-            g: object.material.color.g,
-            b: object.material.color.b
-        };
-        object.material.color.set("#ec5858");
+const addTarget = (target, object, edit_mode, rooms) => {
+    switch (edit_mode) {
+        case 'room':
+            addTargetRoom(target, object, rooms);
+            break
+        case 'item':
+            addTargetItem(target, object);
+            break
+        default:
+            break
     }
-    else {
-        color = {
-            r: object.material.color.r,
-            g: object.material.color.g,
-            b: object.material.color.b
-        };
-        object.material.color.set("#ec5858");
+}
+
+const addTargetRoom = (target, object, rooms) => {
+    if(object.name === "floor"){
+        rooms.children.forEach(room => {
+            if (room.name === object.parent.room_name) {
+                target.push({ object: room })
+                document.getElementById("target_name").innerHTML = room.name;
+                showRoomInfo(room);
+            }
+        });
     }
+    else{
+        target.push({ object: object })
+        document.getElementById("target_name").innerHTML = object.name;
+        showRoomInfo(object.parent);
+    }
+}
 
-
-    target.push({ object: object, color: color });
-
+const addTargetItem = (target, object) => {
+    target.push({ object: object });
     document.getElementById("target_name").innerHTML = object.name;
 }
 
 const removeTarget = (target) => {
-    const temp_target = target.pop();
-    if (temp_target.object.name === "load_object_part") {
-        temp_target.object.material.color.r = temp_target.color.r;
-        temp_target.object.material.color.g = temp_target.color.g;
-        temp_target.object.material.color.b = temp_target.color.b;
-        
-    }
-    else {
-        temp_target.object.material.color.r = temp_target.color.r;
-        temp_target.object.material.color.g = temp_target.color.g;
-        temp_target.object.material.color.b = temp_target.color.b;
-    }
+    // const temp_target = target.pop();
+    target.pop();
 }
