@@ -1,41 +1,51 @@
-import React, { useState } from 'react';
-
 //image
 import wood3 from '../resource/image/wood3.png';
 import btnImage from '../resource/image/checkNone.png';
 import btnCheck from '../resource/image/checkThis.png';
 
-function ListComponent(props) {
-    //radio button
-    const [ inputStatus, setInputStatus ] = useState(false);
-    const [ btnImages, setImage ] = useState(btnImage);
+import { ToggleButton, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
+import React, { useState, state, setStates } from "react";
 
-    const handleClickRadioButton = (radioBtnName) => {
-        setImage(btnCheck);
-        setInputStatus(radioBtnName)
-        console.log(inputStatus)
-    }
+import { itemList } from './SampleData/itemList';
+
+function ListComponent(props) {
+    const [radioValue, setRadioValue] = useState('wood1');
+  
+    const radios_1 = [
+      { name: "방 설정" , value: '1' },
+      { name: "벽" , value: '2' },
+      { name: "바닥" , value: '3' },
+    ];
 
     return (
-        <div className="List">
-            <div className="List-top" style={{backgroundImage: `url(${props.image})`}}>
-                    <input 
-                        type= 'radio'
-                        id= {props.id} 
-                        value= {props.value}
-                        name = "woods"
-                        checked={inputStatus === props.value}
-                        onClick={() => handleClickRadioButton(props.value)}
-                        className="radioTrue"
-                        style={{backgroundImage: inputStatus === props.value ? `url(${btnCheck})` : `url(${btnImage})`, backgroundSize: "35px 35px"}}
-                    />
-                    <label htmlFor='wood1'></label>
-            </div>
-            <div className="List-bottom">
-                {props.itemName}
-            </div>
-        </div>
+      <>
+      <ButtonGroup style={{fontFamily: "NanumSquare_acR"}}>
+          <Container>
+              <Row style={{marginLeft: "-25px"}}>
+                {itemList.map((item, idx) => (
+                <ToggleButton className="select-list-btn" 
+                    style={{marginLeft: "30px"}}
+                    key={idx}
+                    id={item.id}
+                    type="radio"
+                    variant={idx % 2 ? 'outline-success' : 'outline-success'}
+                    name="detail"
+                    value={item.id}
+                    checked={radioValue === item.id}
+                    onChange={(e) => setRadioValue(e.currentTarget.value)}
+                >
+                    <div className="List-top" style={{backgroundImage: `url(${item.image})`}}></div>
+                    <div style={{marginTop: "-0.5vh"}}>
+                        {item.name}
+                    </div>
+                </ToggleButton>
+                ))}
+              </Row>
+          </Container>
+      </ButtonGroup>
+      </>
     );
-}
+  }
+
 
 export default ListComponent;

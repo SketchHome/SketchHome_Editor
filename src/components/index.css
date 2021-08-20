@@ -336,7 +336,6 @@ input[type=radio] {
     color: #424242;
     text-align: center;
     font-size: 16px;
-    margin-left: 10px;
   }
 
   .List-top {
@@ -344,9 +343,7 @@ input[type=radio] {
     width: 180px;
     height: 20vh;
     border-radius: 10px 10px 0px 0px;
-    margin-right: -10px;
-    margin-top: 30px;
-
+    margin: -7px 10px 10px -13px;
   }
   .List-bottom {
     padding: 5px;
@@ -354,6 +351,7 @@ input[type=radio] {
     width: 180px;
     height: 5vh;
     border-radius: 0px 0px 10px 10px;
+    margin: -10px 10px 10px -13px;
 }
 
 .List-top > input[type=radio]:checked{
@@ -369,6 +367,15 @@ input[type=radio] {
 .radioTrue {
     margin-left: 125px;
     margin-top: 5px;
+}
+
+.select-list-btn{
+    width: 180px;
+    height: 25vh;
+    margin-left: 10px;
+    margin-right: -10px;
+    margin-top: 30px;
+    border-radius: 10px;
 }
 
 /*font 모음*/
