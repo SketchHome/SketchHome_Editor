@@ -4,54 +4,89 @@ import ItemList from "./ItemList";
 import FloorList from "./FloorList";
 import WallList from "./WallList";
 
-
-const Detailer = () => {
+//시점 변경 : 2D, 3D, 1인칭 모드
+const ViewMode = () => {
     return (
         <div>
-            <div>
-                <div>mode: <span id="mode_name"></span></div>
+             <div>mode: <span id="mode_name"></span></div>
                 <button id="2D_MODE_btn" style={{ width: "120px" }}>2D MODE</button>
                 <button id="3D_MODE_btn" style={{ width: "120px" }}>3D MODE</button>
                 <br />
                 <button id="PersonView_btn" style={{ width: "240px" }}>Person View MODE</button>
                 <br />
-                <button id="ROOM_EDIT_MODE_btn" style={{ width: "120px" }}>ROOM EDIT MODE</button>
+        </div>
+    )
+}
+
+//편집 모드 설정 : 방 편집 모드, 아이템 편집 모드, 확대 축소 모드
+const EditMode = () => {
+    return (
+        <div>
+            <button id="ROOM_EDIT_MODE_btn" style={{ width: "120px" }}>ROOM EDIT MODE</button>
                 <button id="ITEM_EDIT_MODE_btn" style={{ width: "120px" }}>ITEM EDIT MODE</button>
                 <br />
                 <button id="ZOOM_MODE_btn" style={{ width: "240px" }}>ZOOM MODE</button>
                 <br />
+        </div>
+    );
+}
+
+//저장, 정보 보여주기 등 동작 : 카메라 정보, 내보내기 버튼, 저장 버튼
+const GetInfo = () => {
+    return (
+        <div>
                 <button id="Camera_Info_btn" style={{ width: "240px" }}>Get Camera Info</button>
                 <br />
                 <button id="Export_btn" style={{ width: "240px" }}>Export</button>
                 <br />
-                <button id="Add_Room_btn" style={{ width: "240px" }}>Add Room</button>
-                <br />
                 <button id="SAVE_btn" style={{ width: "240px" }}>save</button>
-            </div>
+        </div>
+    );
+}
+
+//조명, 방, 그리드 정보 보여주기 : 방/조명 정보 보여주기, 격자 무늬 ON/OFF
+const ShowInfo = () => {
+    return (
+        <div>
+            <div>Show info</div>
+            <button id="Show_room_info" style={{ width: "120px" }}>SHOW ROOM INFO</button>
+            <button id="Show_light_info" style={{ width: "120px" }}>SHOW LIGHT INFO</button>
+            <div>Toggle grid</div>
+            <button id="show_grid" style={{ width: "120px" }}>TOGGLE GRID</button>
+        </div>
+    );  
+}
+
+//물체 컨트롤 : 물체 삭제, 회전 (h, v)
+const MoveThings = () => {
+    return(
+        <div>
+            <div>target: <span id="target_name"></span></div>
+            <button id="REMOVE_btn" style={{ width: "120px" }}>REMOVE</button>
             <br />
-            <div>
-                <div>target: <span id="target_name"></span></div>
-                <button id="REMOVE_btn" style={{ width: "120px" }}>REMOVE</button>
-                <br />
-                <button id="ROTATE_H_btn" style={{ width: "120px" }}>ROTATE(H)</button>
-                <button id="ROTATE_V_btn" style={{ width: "120px" }}>ROTATE(V)</button>
-            </div>
-            <br />
-            <div>
-                <div>Ceiling : <span id="ceiling_visibility">Invisible</span></div>
-                <button id="show_ceiling" style={{ width: "120px" }}>SHOW CEILING</button>
-                <button id="hide_ceiling" style={{ width: "120px" }}>HIDE CEILING</button>
-            </div>
-            <br />
-                <div>Show info</div>
-                <button id="Show_room_info" style={{ width: "120px" }}>SHOW ROOM INFO</button>
-                <button id="Show_light_info" style={{ width: "120px" }}>SHOW LIGHT INFO</button>
-            <br />
-            <br />
-                <div>Toggle grid</div>
-                <button id="show_grid" style={{ width: "120px" }}>TOGGLE GRID</button>
-            <div>
-                room size
+            <button id="ROTATE_H_btn" style={{ width: "120px" }}>ROTATE(H)</button>
+            <button id="ROTATE_V_btn" style={{ width: "120px" }}>ROTATE(V)</button>
+        </div>
+    );
+}
+
+//천장 설정 : 천장 ON/OFF
+const Ceiling = () => {
+    return (
+        <div>
+            <div>Ceiling : <span id="ceiling_visibility">Invisible</span></div>
+            <button id="show_ceiling" style={{ width: "120px" }}>SHOW CEILING</button>
+            <button id="hide_ceiling" style={{ width: "120px" }}>HIDE CEILING</button>
+        </div>
+    );
+}
+
+//room, door, window 설정 : 방 추가, 방 넓이 높이 조절, 문/창문 추가하기
+const Room = () => {
+    return(
+        <div>
+            <button id="Add_Room_btn" style={{ width: "240px" }}>Add Room</button>
+            room size
                 <table>
                     <tbody>
                         <tr>
@@ -66,25 +101,7 @@ const Detailer = () => {
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div>
-                item size
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>size: </td>
-                            <td><input id="resize_item" style={{ width: "100px" }} type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br />
-            <ItemList />
-            <br />
-            <br />
-            <WallList />
-            <br />
-            <div>
+                <div>
                 door, window list
                 <table>
                     <tbody>
@@ -99,37 +116,65 @@ const Detailer = () => {
                     </tbody>
                 </table>
             </div>
-            <br />
-            <FloorList />
-            <br />
-            <div>
+        </div>
+    );
+}
+
+//change floor and wall color : 벽지 바닥지 변경하기
+const FWColor = () => {
+    return (
+        <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td>floor color:</td>
+                    <td>
+                        <input type="radio" id="floor_color_1" name="floor_color" value="#e6e6e6" defaultChecked /><label style={{ "backgroundColor": "#e6e6e6", "color": "#e6e6e6" }} htmlFor="floor_color_1">clr</label>
+                        <input type="radio" id="floor_color_2" name="floor_color" value="#ffeebb" /><label style={{ "backgroundColor": "#ffeebb", "color": "#ffeebb" }} htmlFor="floor_color_2">clr</label>
+                        <input type="radio" id="floor_color_3" name="floor_color" value="#f8dc81" /><label style={{ "backgroundColor": "#f8dc81", "color": "#f8dc81" }} htmlFor="floor_color_3">clr</label>
+                        <input type="radio" id="floor_color_4" name="floor_color" value="#008891" /><label style={{ "backgroundColor": "#008891", "color": "#008891" }} htmlFor="floor_color_4">clr</label>
+                        <input type="radio" id="floor_color_5" name="floor_color" value="#a9294f" /><label style={{ "backgroundColor": "#a9294f", "color": "#a9294f" }} htmlFor="floor_color_5">clr</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>wall color:</td>
+                    <td>
+                        <input type="radio" id="wall_color_1" name="wall_color" value="#c5a880" defaultChecked /><label style={{ "backgroundColor": "#c5a880", "color": "#c5a880" }} htmlFor="wall_color_1">clr</label>
+                        <input type="radio" id="wall_color_2" name="wall_color" value="#f88f01" /><label style={{ "backgroundColor": "#f88f01", "color": "#f88f01" }} htmlFor="wall_color_2">clr</label>
+                        <input type="radio" id="wall_color_3" name="wall_color" value="#48426d" /><label style={{ "backgroundColor": "#48426d", "color": "#48426d" }} htmlFor="wall_color_3">clr</label>
+                        <input type="radio" id="wall_color_4" name="wall_color" value="#487e95" /><label style={{ "backgroundColor": "#487e95", "color": "#487e95" }} htmlFor="wall_color_4">clr</label>
+                        <input type="radio" id="wall_color_5" name="wall_color" value="#e9b0df" /><label style={{ "backgroundColor": "#e9b0df", "color": "#e9b0df" }} htmlFor="wall_color_5">clr</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    );  
+}
+
+//아이템 : 사이즈 변경
+const Item = () => {
+    return (
+        <div>
+             <div>
+                item size
                 <table>
                     <tbody>
                         <tr>
-                            <td>floor color:</td>
-                            <td>
-                                <input type="radio" id="floor_color_1" name="floor_color" value="#e6e6e6" defaultChecked /><label style={{ "backgroundColor": "#e6e6e6", "color": "#e6e6e6" }} htmlFor="floor_color_1">clr</label>
-                                <input type="radio" id="floor_color_2" name="floor_color" value="#ffeebb" /><label style={{ "backgroundColor": "#ffeebb", "color": "#ffeebb" }} htmlFor="floor_color_2">clr</label>
-                                <input type="radio" id="floor_color_3" name="floor_color" value="#f8dc81" /><label style={{ "backgroundColor": "#f8dc81", "color": "#f8dc81" }} htmlFor="floor_color_3">clr</label>
-                                <input type="radio" id="floor_color_4" name="floor_color" value="#008891" /><label style={{ "backgroundColor": "#008891", "color": "#008891" }} htmlFor="floor_color_4">clr</label>
-                                <input type="radio" id="floor_color_5" name="floor_color" value="#a9294f" /><label style={{ "backgroundColor": "#a9294f", "color": "#a9294f" }} htmlFor="floor_color_5">clr</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>wall color:</td>
-                            <td>
-                                <input type="radio" id="wall_color_1" name="wall_color" value="#c5a880" defaultChecked /><label style={{ "backgroundColor": "#c5a880", "color": "#c5a880" }} htmlFor="wall_color_1">clr</label>
-                                <input type="radio" id="wall_color_2" name="wall_color" value="#f88f01" /><label style={{ "backgroundColor": "#f88f01", "color": "#f88f01" }} htmlFor="wall_color_2">clr</label>
-                                <input type="radio" id="wall_color_3" name="wall_color" value="#48426d" /><label style={{ "backgroundColor": "#48426d", "color": "#48426d" }} htmlFor="wall_color_3">clr</label>
-                                <input type="radio" id="wall_color_4" name="wall_color" value="#487e95" /><label style={{ "backgroundColor": "#487e95", "color": "#487e95" }} htmlFor="wall_color_4">clr</label>
-                                <input type="radio" id="wall_color_5" name="wall_color" value="#e9b0df" /><label style={{ "backgroundColor": "#e9b0df", "color": "#e9b0df" }} htmlFor="wall_color_5">clr</label>
-                            </td>
+                            <td>size: </td>
+                            <td><input id="resize_item" style={{ width: "100px" }} type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <br />
-            <div>
+        </div>
+    );
+}
+
+//조명 설정 : 포지션별 조명 설정하기
+const Light = () => {
+    return (
+        <div>
                 light
                 <table>
                     <tbody>
@@ -152,8 +197,25 @@ const Detailer = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
     );
 }
 
-export default Detailer;
+export {ViewMode}; //시점 변경 : 2D, 3D, 1인칭 모드
+export {EditMode}; //편집 모드 설정 : 방 편집 모드, 아이템 편집 모드, 확대 축소 모드
+
+export {GetInfo}; //저장, 정보 보여주기 등 동작 : 카메라 정보, 내보내기 버튼, 저장 버튼
+export {ShowInfo}; //조명, 방, 그리드 정보 보여주기 : 방/조명 정보 보여주기, 격자 무늬 ON/OFF
+
+export {MoveThings}; //물체 컨트롤 : 물체 삭제, 회전 (h, v)
+export {FWColor}; //change floor and wall color : 벽지 바닥지 변경하기
+
+export {Room}; //room, door, window 설정 : 방 추가, 방 넓이 높이 조절, 문/창문 추가하기
+export {Light}; //조명 설정 : 포지션별 조명 설정하기
+export {Item}; //아이템 : 사이즈 변경
+export {Ceiling}; //천장 설정 : 천장 ON/OFF
+
+/*
+export {itemList}; //아이템 목록
+export {wallList}; //벽 목록
+export {floorList}; //바닥 목록
+*/

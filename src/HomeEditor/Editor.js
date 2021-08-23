@@ -8,7 +8,10 @@ import { PointerLockControls} from "three/examples/jsm/controls/PointerLockContr
 import { setMouseEvent, setButtonEvent, setInputEvent, setKeyboardEvent } from "./module/_event";
 import { addGrid, addLight, addRoom } from "./module/_addObject";
 
-import Detailer from "./Detailer/Detailer"
+import {ViewMode, EditMode, GetInfo, ShowInfo, MoveThings, FWColor, Room, Light, Item, Ceiling} from "./Detailer/Detailer";
+import ItemList from "./Detailer/ItemList";
+import FloorList from "./Detailer/FloorList";
+import WallList from "./Detailer/WallList";
 
 import room_data from "./data/room_1_data.json";
 
@@ -98,7 +101,19 @@ class Editor extends Component {
 					className="Scene"
 					style={{ width: "900px", height: "400px" }}
 					ref={(mount) => { this.mount = mount }} />
-				<Detailer />
+				<ViewMode/>
+				<EditMode/>
+				<GetInfo/>
+				<ShowInfo/>
+				<MoveThings/>
+				<FWColor/>
+				<Room/>
+				<Light/>
+				<Item/>
+				<Ceiling/>
+				<ItemList/>
+				<FloorList/>
+				<WallList/>
 			</div>
 		)
 	}
