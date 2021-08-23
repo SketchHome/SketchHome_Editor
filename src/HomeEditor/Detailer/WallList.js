@@ -4,7 +4,7 @@ import wall_path_list from "../texture/wall_path_list.json";
 import "./WallList.css"
 
 const WallList = () => {
-    console.log(wall_path_list)
+    //console.log(wall_path_list)
     return (
         <div>
             wall texture list

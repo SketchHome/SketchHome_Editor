@@ -1,51 +1,100 @@
 {
-    "room": {
-        "type": "square",
-        "size": {"x": 11, "y": 3, "z": 7},
-        "wall": [
-            {
-                "id": "wall_0",
-                "type": "horizon",
-                "direction": "top",
-                "door": [],
-                "window": [
-                    {
-                        "id": "window_0",
-                        "size": {"x": 3, "y": 2, "z": 0.3},
-                        "position": {"x": 0, "y": 1.7}
-                    }
-                ]
-            },
-            {
-                "id": "wall_1",
-                "type": "horizon",
-                "direction": "bottom",
-                "door": [],
-                "window": []
-            },
-            {
-                "id": "wall_2",
-                "type": "vertical",
-                "direction": "right",
-                "door": [],
-                "window": []
-            },
-            {
-                "id": "wall_3",
-                "type": "vertical",
-                "direction": "left",
-                "door": [
-                    {
-                        "id": "door_0",
-                        "size": {"x": 1.5, "y": 2, "z": 0.3},
-                        "position": {"x": -1}
-                    }
-                ],
-                "window": []
-            }
-        ],
-        "item": [
-            
-        ]
-    }
+    "room": [
+        {
+            "id": "room_0",
+            "type": "square",
+            "position": {"x": 0, "y": 0, "z": 0},
+            "size": {"x": 11, "y": 3, "z": 7},
+            "wall": [
+                {
+                    "id": "wall_0",
+                    "type": "horizon",
+                    "direction": "top",
+                    "door": [],
+                    "window": [
+                        {
+                            "id": "window_0",
+                            "size": {"x": 3, "y": 2, "z": 0.3},
+                            "position": {"x": 0, "y": 1.7}
+                        }
+                    ]
+                },
+                {
+                    "id": "wall_1",
+                    "type": "horizon",
+                    "direction": "bottom",
+                    "door": [],
+                    "window": []
+                },
+                {
+                    "id": "wall_2",
+                    "type": "vertical",
+                    "direction": "right",
+                    "door": [],
+                    "window": []
+                },
+                {
+                    "id": "wall_3",
+                    "type": "vertical",
+                    "direction": "left",
+                    "door": [
+                        {
+                            "id": "door_0",
+                            "size": {"x": 1.5, "y": 2, "z": 0.3},
+                            "position": {"x": -1}
+                        }
+                    ],
+                    "window": []
+                }
+            ],
+            "item": [
+                
+            ]
+        },
+        {
+            "id": "room_1",
+            "type": "square",
+            "position": {"x": 10, "y": 0, "z": 10},
+            "size": {"x": 10, "y": 3, "z": 5},
+            "wall": [
+                {
+                    "id": "wall_4",
+                    "type": "horizon",
+                    "direction": "top",
+                    "door": [],
+                    "window": []
+                },
+                {
+                    "id": "wall_5",
+                    "type": "horizon",
+                    "direction": "bottom",
+                    "door": [],
+                    "window": []
+                },
+                {
+                    "id": "wall_6",
+                    "type": "vertical",
+                    "direction": "right",
+                    "door": [],
+                    "window": []
+                },
+                {
+                    "id": "wall_7",
+                    "type": "vertical",
+                    "direction": "left",
+                    "door": [],
+                    "window": [
+                        {
+                            "id": "window_2",
+                            "size": {"x": 3, "y": 2, "z": 0.3},
+                            "position": {"x": 0, "y": 1.7}
+                        }
+                    ]
+                }
+            ],
+            "item": [
+                
+            ]
+        }
+    ]
 }

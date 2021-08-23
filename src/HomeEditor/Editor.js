@@ -10,7 +10,7 @@ import { addGrid, addLight, addRoom } from "./module/_addObject";
 
 import Detailer from "./Detailer/Detailer"
 
-import room_data from "../data/room_1_data.json";
+import room_data from "./data/room_1_data.json";
 
 class Editor extends Component {
 	componentDidMount() {
@@ -62,10 +62,14 @@ class Editor extends Component {
 		room.is_person_view_mode = false;
 		room.name = "room";
 		room.size = room_data.room.size;
-		room_data.room.forEach(room_info => {
-			addRoom(room, room_info, 2);
 
-		})
+		//유사 배열의 경우 배열 메서드를 쓸 수 없다.
+		//배열 메서드를 사용할 경우 에러가 난다.
+	
+		[].forEach.call(room_data.room, function(room_info) {
+			addRoom(room, room_info, 2);
+		});
+
 		scene.add(room);
 
 		// add grid
