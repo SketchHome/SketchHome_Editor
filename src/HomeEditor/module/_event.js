@@ -182,7 +182,7 @@ export const setButtonEvent = (camera, viewControls, controls, mapControls, scen
         room.is_edit_mode = true;
         room.is_zoom_mode = false;
         setDragMode(controls, mapControls);
-        document.getElementById("mode_name").innerHTML = "room edit";
+        //document.getElementById("mode_name").innerHTML = "room edit";
     });
 
     document.getElementById("ITEM_EDIT_MODE_btn").addEventListener("click", () => {
@@ -191,14 +191,14 @@ export const setButtonEvent = (camera, viewControls, controls, mapControls, scen
         room.is_edit_mode = true;
         room.is_zoom_mode = false;
         setDragMode(controls, mapControls);
-        document.getElementById("mode_name").innerHTML = "item edit";
+        //document.getElementById("mode_name").innerHTML = "item edit";
     });
 
 
     document.getElementById("ZOOM_MODE_btn").addEventListener("click", () => {
         room.is_person_view_mode = false;
         setZoomMode(controls, mapControls, room.view_mode);
-        document.getElementById("mode_name").innerHTML = "view";
+        //document.getElementById("mode_name").innerHTML = "view";
     });
 
     document.getElementById("REMOVE_btn").addEventListener("click", () => {
@@ -264,6 +264,7 @@ export const setButtonEvent = (camera, viewControls, controls, mapControls, scen
         saveStatus(room);
     });
 
+    /*
     document.getElementById("Show_room_info").addEventListener("click", () => {
         console.log(room);
         room.children.forEach((room_group) => {
@@ -274,6 +275,7 @@ export const setButtonEvent = (camera, viewControls, controls, mapControls, scen
     document.getElementById("Show_light_info").addEventListener("click", () => {
         console.log(light);
     });
+    */
     document.getElementById("show_grid").addEventListener("click", () => {
         scene.children.forEach((group) => {
             if (group.name.split("_")[1] === "grid") {

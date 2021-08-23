@@ -354,10 +354,6 @@ input[type=radio] {
     margin: -10px 10px 10px -13px;
 }
 
-.List-top > input[type=radio]:checked{
-   
-}
-
 .List-top > input[type=radio]{
     width: 30px;
     height: 30px;
@@ -376,6 +372,11 @@ input[type=radio] {
     margin-right: -10px;
     margin-top: 30px;
     border-radius: 10px;
+}
+
+.Editor-fix {
+    justify-content: flex-end;
+    margin-left: 70vh
 }
 
 /*font 모음*/

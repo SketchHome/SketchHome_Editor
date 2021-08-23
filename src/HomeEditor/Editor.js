@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 
 import * as THREE from "three";
 import { DragControls } from "three/examples/jsm/controls/DragControls";
@@ -16,6 +16,7 @@ import WallList from "./Detailer/WallList";
 import room_data from "./data/room_1_data.json";
 
 class Editor extends Component {
+	
 	componentDidMount() {
 		// === THREE.JS CODE START ===
 
@@ -96,14 +97,13 @@ class Editor extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="Editor-fix">
 				<div
 					className="Scene"
-					style={{ width: "900px", height: "400px" }}
+					style={{ width: "120vh", height: "60vh" }}
 					ref={(mount) => { this.mount = mount }} />
-				{/*<ViewMode/>*/}
+				{/*<ViewMode/><GetInfo/>*/}
 				<EditMode/>
-				<GetInfo/>
 				<ShowInfo/>
 				<MoveThings/>
 				<FWColor/>

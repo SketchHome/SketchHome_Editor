@@ -24,12 +24,12 @@ function ToggleButtonExample(props) {
 
   {/*check push btn -> change icon colors*/}
   const checkColor = (target) => {
-    if (target == "radio-0") {
+    if (target == props.id1) {
       setC1(white);
       setC2(green);
       setC3(green);
     }
-    else if (target == "radio-1") {
+    else if (target == props.id2) {
       setC1(green);
       setC2(white);
       setC3(green);

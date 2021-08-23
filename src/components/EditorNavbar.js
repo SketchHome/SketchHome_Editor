@@ -38,7 +38,7 @@ function EditorNavigation(props) {
                         {/*Button list*/}
                         <Button variant="outline-success" className="buttonMargin"><BiUndo/></Button>{' '}
                         <Button variant="outline-success" className="buttonMargin"><BiRedo/></Button>{' '}
-                        <Button variant="outline-success" className="buttonMargin"><BiSave/></Button>{' '}
+                        <Button id="SAVE_btn" variant="outline-success" className="buttonMargin"><BiSave/></Button>{' '}
                     </Col>
                     <Col style={{width: "300px"}}>
                         <ToggleBtn
@@ -52,7 +52,8 @@ function EditorNavigation(props) {
                         />
                     </Col>
                     <Col>
-                        <Button variant="success" style={{position: 'absolute', right: 0, marginRight: "30px"}}><BiScan/> 렌더링 하기</Button>{' '}
+                        <Button id ="Export_btn" variant="success" style={{position: 'absolute', right: 0, marginRight: "30px"}}><BiScan/> 렌더링 하기</Button>{' '}
+                        <Button id="Camera_Info_btn" style={{ width: "240px", display: "none"}}>Get Camera Info</Button>
                     </Col>
                 </Row>
             </Container>

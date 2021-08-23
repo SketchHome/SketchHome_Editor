@@ -4,7 +4,7 @@ import ItemList from "./ItemList";
 import FloorList from "./FloorList";
 import WallList from "./WallList";
 
-//시점 변경 : 2D, 3D, 1인칭 모드
+//시점 변경 : 2D, 3D, 1인칭 모드 (Move 완료)
 const ViewMode = () => {
     return (
         <div>
@@ -31,7 +31,7 @@ const EditMode = () => {
     );
 }
 
-//저장, 정보 보여주기 등 동작 : 카메라 정보, 내보내기 버튼, 저장 버튼
+//저장, 정보 보여주기 등 동작 : 카메라 정보, 내보내기 버튼, 저장 버튼 (Move 완료)
 const GetInfo = () => {
     return (
         <div>
@@ -48,9 +48,11 @@ const GetInfo = () => {
 const ShowInfo = () => {
     return (
         <div>
+            {/* 
             <div>Show info</div>
             <button id="Show_room_info" style={{ width: "120px" }}>SHOW ROOM INFO</button>
             <button id="Show_light_info" style={{ width: "120px" }}>SHOW LIGHT INFO</button>
+            */}
             <div>Toggle grid</div>
             <button id="show_grid" style={{ width: "120px" }}>TOGGLE GRID</button>
         </div>

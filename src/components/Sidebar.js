@@ -48,6 +48,7 @@ function Sidebar() {
                         i1="yes"
                         i2="yes"
                         i3="yes"
+                        id1="1" id2="2" id3="3"
                         n1={<div className="category-list">방 설정하기</div>}
                         n2={<div className="category-list">인테리어 하기</div>}
                         n3={<div className="category-list">가구 편집하기</div>}
@@ -55,14 +56,14 @@ function Sidebar() {
                         />
                 </li>
                 {/*room - select btn bar*/}
-                <li className="category-select">
+                <li>
                     <SelectBtn/>
                 </li>
-                {/*Select view*/}
+                {/*Select view
                 <div className="scroll">
                     <Selectitem/>
-                    
                 </div>
+                */}
             </ul>
              {/*toggle Sidebar*/}
             <div className="toggleBtn">
