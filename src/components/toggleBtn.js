@@ -17,9 +17,9 @@ function ToggleButtonExample(props) {
     const [c3, setC3] = useState(green);
   
     const radios = [
-      { name: props.n1 , value: '1' , icons: (props.i1 == "yes" ? <BiHome color={c1} size="35px" style={{marginBottom: "5px"}}/> : " ") },
-      { name: props.n2 , value: '2' , icons: (props.i2 == "yes" ? <BiBed color={c2} size="35px" style={{marginBottom: "5px"}}/> : " ") },
-      { name: props.n3 , value: '3' , icons: (props.i3 == "yes" ? <BiHighlight color={c3} size="35px" style={{marginBottom: "5px"}}/> : " ") },
+      { name: props.n1 , id: props.id1, value: '1' , icons: (props.i1 == "yes" ? <BiHome color={c1} size="35px" style={{marginBottom: "5px"}}/> : " ") },
+      { name: props.n2 , id: props.id2, value: '2' , icons: (props.i2 == "yes" ? <BiBed color={c2} size="35px" style={{marginBottom: "5px"}}/> : " ") },
+      { name: props.n3 , id: props.id3, value: '3' , icons: (props.i3 == "yes" ? <BiHighlight color={c3} size="35px" style={{marginBottom: "5px"}}/> : " ") },
     ];
 
   {/*check push btn -> change icon colors*/}
@@ -47,7 +47,7 @@ function ToggleButtonExample(props) {
             {radios.map((radio, idx) => (
               <ToggleButton style={{borderWidth: props.border}}
                 key={idx}
-                id={`radio-${idx}`}
+                id={radio.id}
                 type="radio"
                 variant={idx % 2 ? 'outline-success' : props.btnColor}
                 name="Menu"

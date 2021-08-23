@@ -8,7 +8,7 @@ import WallList from "./WallList";
 const ViewMode = () => {
     return (
         <div>
-             <div>mode: <span id="mode_name"></span></div>
+             {/*<div>mode: <span id="mode_name"></span></div>*/}
                 <button id="2D_MODE_btn" style={{ width: "120px" }}>2D MODE</button>
                 <button id="3D_MODE_btn" style={{ width: "120px" }}>3D MODE</button>
                 <br />

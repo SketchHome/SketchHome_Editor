@@ -101,7 +101,7 @@ class Editor extends Component {
 					className="Scene"
 					style={{ width: "900px", height: "400px" }}
 					ref={(mount) => { this.mount = mount }} />
-				<ViewMode/>
+				{/*<ViewMode/>*/}
 				<EditMode/>
 				<GetInfo/>
 				<ShowInfo/>

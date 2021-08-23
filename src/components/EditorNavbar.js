@@ -44,8 +44,11 @@ function EditorNavigation(props) {
                         <ToggleBtn
                         btnColor="outline-success"
                         n1="2D 뷰어"
-                        n2="편집 모드"
+                        n2="1인칭 모드"
                         n3="3D 뷰어"
+                        id1="2D_MODE_btn"
+                        id2="PersonView_btn"
+                        id3="3D_MODE_btn"
                         />
                     </Col>
                     <Col>
