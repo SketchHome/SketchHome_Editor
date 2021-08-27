@@ -1,6 +1,11 @@
 import { ToggleButton, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
 import React, { useState, state, setStates } from "react";
 
+//btn components
+import {ViewMode, EditMode, GetInfo, ShowInfo, MoveThings, FWColor, WallColor, AddWF, Room, Light, Item, Ceiling} from "../HomeEditor/Detailer/Detailer";
+import FloorList from '../HomeEditor/Detailer/FloorList';
+import WallList from '../HomeEditor/Detailer/WallList';
+
 function clickBtn(props) {
     const [radioValue, setRadioValue] = useState('1');
   
@@ -21,42 +26,46 @@ function clickBtn(props) {
       if(radioValue == "1") {
         return (
           <div>
-            1
+            <Room/>
+            <ShowInfo/>
           </div>
         );
       }
       else if(radioValue == "2") {
         return (
           <div>
-            2
+            <WallColor/>
+            <WallList/>
           </div>
         );
       }
       else if(radioValue == "3") {
         return (
           <div>
-            3
+            <FWColor/>
+            <FloorList/>
           </div>
         );
       }
       else if(radioValue == "4") {
         return (
           <div>
-            4
+            <AddWF/>
+            <MoveThings/>
           </div>
         );
       }
       else if(radioValue == "5") {
         return (
           <div>
-            5
+            <Ceiling/>
           </div>
         );
       }
       else {
         return (
           <div>
-            6
+            <Light/>
           </div>
         );
       }

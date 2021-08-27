@@ -8,7 +8,7 @@ import { PointerLockControls} from "three/examples/jsm/controls/PointerLockContr
 import { setMouseEvent, setButtonEvent, setInputEvent, setKeyboardEvent } from "./module/_event";
 import { addGrid, addLight, addRoom } from "./module/_addObject";
 
-import {ViewMode, EditMode, GetInfo, ShowInfo, MoveThings, FWColor, Room, Light, Item, Ceiling} from "./Detailer/Detailer";
+import {ViewMode, EditMode, GetInfo, ShowInfo, MoveThings, FWColor, WallColor, AddWF, Room, Light, Item, Ceiling} from "./Detailer/Detailer";
 import ItemList from "./Detailer/ItemList";
 import FloorList from "./Detailer/FloorList";
 import WallList from "./Detailer/WallList";
@@ -100,20 +100,19 @@ class Editor extends Component {
 			<div className="Editor-fix">
 				<div
 					className="Scene"
-					style={{ width: "120vh", height: "60vh" }}
+					style={{ width: "95%", height: "90%" }}
 					ref={(mount) => { this.mount = mount }} />
 				{/*<ViewMode/><GetInfo/>*/}
-				<EditMode/>
-				<ShowInfo/>
-				<MoveThings/>
-				<FWColor/>
-				<Room/>
-				<Light/>
-				<Item/>
-				<Ceiling/>
-				<ItemList/>
-				<FloorList/>
-				<WallList/>
+				<EditMode visible="none"/>
+				<ShowInfo visible="none"/>
+				<MoveThings visible="none"/>
+				<FWColor visible="none"/>
+				<WallColor visible="none"/>
+				<Room visible="none"/>
+				<Light visible="none"/>
+				<Item visible="none"/> {/*아이템 사이즈 조절은 아직 안 넣음*/}
+				<Ceiling visible="none"/>
+				<AddWF visible="none"/>
 			</div>
 		)
 	}

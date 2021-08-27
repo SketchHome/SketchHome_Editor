@@ -25,10 +25,8 @@ function HomeEditor() {
   return (
     <div className="HomeEditor">
       <EditorNav fileName="myfiles1"/>
-      <Container fluid>
         <SideBar/>
         <Editor />
-        </Container>
     </div>
   );
 }

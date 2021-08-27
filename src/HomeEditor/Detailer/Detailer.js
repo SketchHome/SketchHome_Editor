@@ -5,9 +5,9 @@ import FloorList from "./FloorList";
 import WallList from "./WallList";
 
 //시점 변경 : 2D, 3D, 1인칭 모드 (Move 완료)
-const ViewMode = () => {
+const ViewMode = (props) => {
     return (
-        <div>
+        <div style={{display: props.visible}}>
              {/*<div>mode: <span id="mode_name"></span></div>*/}
                 <button id="2D_MODE_btn" style={{ width: "120px" }}>2D MODE</button>
                 <button id="3D_MODE_btn" style={{ width: "120px" }}>3D MODE</button>
@@ -19,9 +19,9 @@ const ViewMode = () => {
 }
 
 //편집 모드 설정 : 방 편집 모드, 아이템 편집 모드, 확대 축소 모드
-const EditMode = () => {
+const EditMode = (props) => {
     return (
-        <div>
+        <div style={{display: props.visible}}>
             <button id="ROOM_EDIT_MODE_btn" style={{ width: "120px" }}>ROOM EDIT MODE</button>
                 <button id="ITEM_EDIT_MODE_btn" style={{ width: "120px" }}>ITEM EDIT MODE</button>
                 <br />
@@ -32,9 +32,9 @@ const EditMode = () => {
 }
 
 //저장, 정보 보여주기 등 동작 : 카메라 정보, 내보내기 버튼, 저장 버튼 (Move 완료)
-const GetInfo = () => {
+const GetInfo = (props) => {
     return (
-        <div>
+        <div style={{display: props.visible}}>
                 <button id="Camera_Info_btn" style={{ width: "240px" }}>Get Camera Info</button>
                 <br />
                 <button id="Export_btn" style={{ width: "240px" }}>Export</button>
@@ -45,9 +45,9 @@ const GetInfo = () => {
 }
 
 //조명, 방, 그리드 정보 보여주기 : 방/조명 정보 보여주기, 격자 무늬 ON/OFF
-const ShowInfo = () => {
+const ShowInfo = (props) => {
     return (
-        <div>
+        <div style={{display: props.visible}}>
             {/* 
             <div>Show info</div>
             <button id="Show_room_info" style={{ width: "120px" }}>SHOW ROOM INFO</button>
@@ -60,9 +60,9 @@ const ShowInfo = () => {
 }
 
 //물체 컨트롤 : 물체 삭제, 회전 (h, v)
-const MoveThings = () => {
+const MoveThings = (props) => {
     return(
-        <div>
+        <div style={{display: props.visible}}>
             <div>target: <span id="target_name"></span></div>
             <button id="REMOVE_btn" style={{ width: "120px" }}>REMOVE</button>
             <br />
@@ -73,9 +73,9 @@ const MoveThings = () => {
 }
 
 //천장 설정 : 천장 ON/OFF
-const Ceiling = () => {
+const Ceiling = (props) => {
     return (
-        <div>
+        <div style={{display: props.visible}}>
             <div>Ceiling : <span id="ceiling_visibility">Invisible</span></div>
             <button id="show_ceiling" style={{ width: "120px" }}>SHOW CEILING</button>
             <button id="hide_ceiling" style={{ width: "120px" }}>HIDE CEILING</button>
@@ -84,9 +84,9 @@ const Ceiling = () => {
 }
 
 //room, door, window 설정 : 방 추가, 방 넓이 높이 조절, 문/창문 추가하기
-const Room = () => {
+const Room = (props) => {
     return(
-        <div>
+        <div style={{display: props.visible}}>
             <button id="Add_Room_btn" style={{ width: "240px" }}>Add Room</button>
             room size
                 <table>
@@ -103,29 +103,34 @@ const Room = () => {
                         </tr>
                     </tbody>
                 </table>
-                <div>
-                door, window list
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>door</td>
-                            <td><button id="Add_door_btn" item_name="window">add</button></td>
-                        </tr>
-                        <tr>
-                            <td>window</td>
-                            <td><button id="Add_window_btn" item_name="door">add</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        </div>
+    );
+}
+
+const AddWF = (props) => {
+    return (
+        <div style={{display: props.visible}}>
+            door, window list
+            <table>
+                <tbody>
+                    <tr>
+                        <td>door</td>
+                        <td><button id="Add_door_btn" item_name="window">add</button></td>
+                    </tr>
+                    <tr>
+                        <td>window</td>
+                        <td><button id="Add_window_btn" item_name="door">add</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 }
 
 //change floor and wall color : 벽지 바닥지 변경하기
-const FWColor = () => {
+const FWColor = (props) => {
     return (
-        <div>
+        <div style={{display: props.visible}}>
         <table>
             <tbody>
                 <tr>
@@ -138,26 +143,36 @@ const FWColor = () => {
                         <input type="radio" id="floor_color_5" name="floor_color" value="#a9294f" /><label style={{ "backgroundColor": "#a9294f", "color": "#a9294f" }} htmlFor="floor_color_5">clr</label>
                     </td>
                 </tr>
-                <tr>
-                    <td>wall color:</td>
-                    <td>
-                        <input type="radio" id="wall_color_1" name="wall_color" value="#c5a880" defaultChecked /><label style={{ "backgroundColor": "#c5a880", "color": "#c5a880" }} htmlFor="wall_color_1">clr</label>
-                        <input type="radio" id="wall_color_2" name="wall_color" value="#f88f01" /><label style={{ "backgroundColor": "#f88f01", "color": "#f88f01" }} htmlFor="wall_color_2">clr</label>
-                        <input type="radio" id="wall_color_3" name="wall_color" value="#48426d" /><label style={{ "backgroundColor": "#48426d", "color": "#48426d" }} htmlFor="wall_color_3">clr</label>
-                        <input type="radio" id="wall_color_4" name="wall_color" value="#487e95" /><label style={{ "backgroundColor": "#487e95", "color": "#487e95" }} htmlFor="wall_color_4">clr</label>
-                        <input type="radio" id="wall_color_5" name="wall_color" value="#e9b0df" /><label style={{ "backgroundColor": "#e9b0df", "color": "#e9b0df" }} htmlFor="wall_color_5">clr</label>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
     );  
 }
 
+const WallColor = (props) => {
+   return (
+    <div style={{display: props.visible}}>
+    <table>
+        <tbody>
+            <tr>
+                <td>wall color:</td>
+                <td>
+                    <input type="radio" id="wall_color_1" name="wall_color" value="#c5a880" defaultChecked /><label style={{ "backgroundColor": "#c5a880", "color": "#c5a880" }} htmlFor="wall_color_1">clr</label>
+                    <input type="radio" id="wall_color_2" name="wall_color" value="#f88f01" /><label style={{ "backgroundColor": "#f88f01", "color": "#f88f01" }} htmlFor="wall_color_2">clr</label>
+                    <input type="radio" id="wall_color_3" name="wall_color" value="#48426d" /><label style={{ "backgroundColor": "#48426d", "color": "#48426d" }} htmlFor="wall_color_3">clr</label>
+                    <input type="radio" id="wall_color_4" name="wall_color" value="#487e95" /><label style={{ "backgroundColor": "#487e95", "color": "#487e95" }} htmlFor="wall_color_4">clr</label>
+                    <input type="radio" id="wall_color_5" name="wall_color" value="#e9b0df" /><label style={{ "backgroundColor": "#e9b0df", "color": "#e9b0df" }} htmlFor="wall_color_5">clr</label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+   );
+}
 //아이템 : 사이즈 변경
-const Item = () => {
+const Item = (props) => {
     return (
-        <div>
+        <div style={{display: props.visible}}>
              <div>
                 item size
                 <table>
@@ -174,9 +189,9 @@ const Item = () => {
 }
 
 //조명 설정 : 포지션별 조명 설정하기
-const Light = () => {
+const Light = (props) => {
     return (
-        <div>
+        <div style={{display: props.visible}}>
                 light
                 <table>
                     <tbody>
@@ -210,11 +225,15 @@ export {ShowInfo}; //조명, 방, 그리드 정보 보여주기 : 방/조명 정
 
 export {MoveThings}; //물체 컨트롤 : 물체 삭제, 회전 (h, v)
 export {FWColor}; //change floor and wall color : 벽지 바닥지 변경하기
+export {WallColor}; //벽지 색
 
 export {Room}; //room, door, window 설정 : 방 추가, 방 넓이 높이 조절, 문/창문 추가하기
 export {Light}; //조명 설정 : 포지션별 조명 설정하기
 export {Item}; //아이템 : 사이즈 변경
 export {Ceiling}; //천장 설정 : 천장 ON/OFF
+
+export {AddWF}; //창문 문 추가
+
 
 /*
 export {itemList}; //아이템 목록
