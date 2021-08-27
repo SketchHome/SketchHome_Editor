@@ -102,7 +102,6 @@ class Editor extends Component {
 	render() {
 		return (
 			<div className="Editor-fix">
-				<EditorNav fileName="myfiles1"/>
 				<SideBar
 				rooms={<Room/>}
 				showInfos={<ShowInfo/>}

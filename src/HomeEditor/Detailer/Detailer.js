@@ -8,7 +8,7 @@ import WallList from "./WallList";
 const ViewMode = (props) => {
     return (
         <div style={{display: props.visible}}>
-             {/*<div>mode: <span id="mode_name"></span></div>*/}
+            {/*<div>mode: <span id="mode_name"></span></div>*/}
                 <button id="2D_MODE_btn" style={{ width: "120px" }}>2D MODE</button>
                 <button id="3D_MODE_btn" style={{ width: "120px" }}>3D MODE</button>
                 <br />
@@ -48,12 +48,14 @@ const GetInfo = (props) => {
 const ShowInfo = (props) => {
     return (
         <div style={{display: props.visible}}>
+            {/** 
             <div>Show info</div>
             <button id="Show_room_info" style={{ width: "120px" }}>SHOW ROOM INFO</button>
             <button id="Show_light_info" style={{ width: "120px" }}>SHOW LIGHT INFO</button>
-         
-            <div>Toggle grid</div>
-            <button id="show_grid" style={{ width: "120px" }}>TOGGLE GRID</button>
+            
+            <div><h5>그리드 설정</h5></div>
+            <button id="show_grid" className="category-select-btns" style={{ width: "370px", backgroundColor: "#A8BA8D"}}>그리드 표시하기</button>
+            */} 
         </div>
     );  
 }
@@ -86,22 +88,34 @@ const Ceiling = (props) => {
 const Room = (props) => {
     return(
         <div style={{display: props.visible}}>
-            <button id="Add_Room_btn" style={{ width: "240px" }}>Add Room</button>
-            room size
+            <div>선택하고 있는 물체 : <span id="target_name"></span></div> <br/>
+            <button id="Add_Room_btn" className="category-select-btns" style={{ width: "370px" }}>방 추가하기</button>
+            <br/>
+            <div style={{display: props.visible}}>
+            {/** 
+            <div>Show info</div>
+            <button id="Show_room_info" style={{ width: "120px" }}>SHOW ROOM INFO</button>
+            <button id="Show_light_info" style={{ width: "120px" }}>SHOW LIGHT INFO</button>
+            */}
+            <button id="show_grid" className="category-select-btns" style={{ width: "370px", backgroundColor: "#A8BA8D"}}>그리드 표시하기</button>
+        </div>
+        <br/>
+            <h5>방 사이즈</h5>
                 <table>
                     <tbody>
                         <tr>
-                            <td>width </td>
-                            <td><input id="resize_width" style={{ width: "100px"}} type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
-                            <td><span id="room_width">11</span></td>
+                            <td>넓이</td>
+                            <td><input id="resize_width" style={{ width: "260px", height:"20px", marginLeft: "20px"}} type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
+                            <td><span id="room_width">11</span> m</td>
                         </tr>
                         <tr>
-                            <td>height </td> 
-                            <td><input id="resize_height" style={{ width: "100px" }} type="range" step="0.1" min="3" max="20" defaultValue="7" /></td>
-                            <td><span id="room_height">7</span></td>
+                            <td>높이</td> 
+                            <td><input id="resize_height" style={{ width: "260px", marginLeft: "20px", height:"20px" }} type="range" step="0.1" min="3" max="20" defaultValue="7" /></td>
+                            <td><span id="room_height">7</span> m</td>
                         </tr>
                     </tbody>
                 </table>
+                <br/>
         </div>
     );
 }

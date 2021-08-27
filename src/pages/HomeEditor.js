@@ -17,11 +17,13 @@ import startImage from '../resource/image/start.jpg';
 import sample1 from '../resource/image/inteior1.jpg'
 
 //Component
+import EditorNav from '../components/EditorNavbar';
 import Editor from '../HomeEditor/Editor'
 
 function HomeEditor() {
   return (
     <div className="HomeEditor">
+      <EditorNav fileName="myfiles1"/>
         <Editor />
     </div>
   );
