@@ -48,11 +48,10 @@ const GetInfo = (props) => {
 const ShowInfo = (props) => {
     return (
         <div style={{display: props.visible}}>
-            {/* 
             <div>Show info</div>
             <button id="Show_room_info" style={{ width: "120px" }}>SHOW ROOM INFO</button>
             <button id="Show_light_info" style={{ width: "120px" }}>SHOW LIGHT INFO</button>
-            */}
+         
             <div>Toggle grid</div>
             <button id="show_grid" style={{ width: "120px" }}>TOGGLE GRID</button>
         </div>

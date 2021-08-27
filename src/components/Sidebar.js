@@ -23,13 +23,14 @@ import SelectBtn from './clickBtn';
 //Select Component_click시 전환 페이지
 import Category from './SideBarSelect/Category';
 import Selectitem from './SideBarSelect/Selectitem';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 //interior tab
 function interior() {
 
 }
 
-function Sidebar() {
+function Sidebar(props) {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
@@ -57,7 +58,18 @@ function Sidebar() {
                 </li>
                 {/*room - select btn bar*/}
                 <li>
-                    <SelectBtn/>
+                    <SelectBtn
+                        room={props.rooms}
+                        showInfo={props.showInfos}
+                        wallColor={props.wallColors}
+                        wallList={props.wallLists}
+                        floorColor={props.floorColors}
+                        floorList={props.floorLists}
+                        addWf={props.addWfs}
+                        moveThing={props.moveThings}
+                        ceiling={props.ceilings}
+                        light={props.lights}
+                    />
                 </li>
                 {/*Select view
                 <div className="scroll">

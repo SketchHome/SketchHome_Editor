@@ -1,12 +1,8 @@
 import { ToggleButton, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
 import React, { useState, state, setStates } from "react";
 
-//btn components
-import {ViewMode, EditMode, GetInfo, ShowInfo, MoveThings, FWColor, WallColor, AddWF, Room, Light, Item, Ceiling} from "../HomeEditor/Detailer/Detailer";
-import FloorList from '../HomeEditor/Detailer/FloorList';
-import WallList from '../HomeEditor/Detailer/WallList';
-
 function clickBtn(props) {
+  
     const [radioValue, setRadioValue] = useState('1');
   
     const radios_1 = [
@@ -21,51 +17,52 @@ function clickBtn(props) {
     { name: "조명" , value: '6' },
     ];
 
+    
     //Select Menu => change pages
     const version = () => {
       if(radioValue == "1") {
         return (
           <div>
-            <Room/>
-            <ShowInfo/>
+            {props.room}
+            {props.showInfo}
           </div>
         );
       }
       else if(radioValue == "2") {
         return (
           <div>
-            <WallColor/>
-            <WallList/>
+            {props.wallColor}
+            {props.wallList}
           </div>
         );
       }
       else if(radioValue == "3") {
         return (
           <div>
-            <FWColor/>
-            <FloorList/>
+            {props.floorColor}
+            {props.floorList}
           </div>
         );
       }
       else if(radioValue == "4") {
         return (
           <div>
-            <AddWF/>
-            <MoveThings/>
+            {props.addWf}
+            {props.moveThing}
           </div>
         );
       }
       else if(radioValue == "5") {
         return (
           <div>
-            <Ceiling/>
+            {props.ceiling}
           </div>
         );
       }
       else {
         return (
           <div>
-            <Light/>
+            {props.light}
           </div>
         );
       }

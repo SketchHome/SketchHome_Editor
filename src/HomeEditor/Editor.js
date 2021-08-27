@@ -1,11 +1,13 @@
 import React, { Component, useState } from "react";
+import SideBar from '../components/Sidebar';
+import EditorNav from '../components/EditorNavbar';
 
 import * as THREE from "three";
 import { DragControls } from "three/examples/jsm/controls/DragControls";
 import { MapControls, OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { PointerLockControls} from "three/examples/jsm/controls/PointerLockControls";
-
 import { setMouseEvent, setButtonEvent, setInputEvent, setKeyboardEvent } from "./module/_event";
+
 import { addGrid, addLight, addRoom } from "./module/_addObject";
 
 import {ViewMode, EditMode, GetInfo, ShowInfo, MoveThings, FWColor, WallColor, AddWF, Room, Light, Item, Ceiling} from "./Detailer/Detailer";
@@ -14,6 +16,8 @@ import FloorList from "./Detailer/FloorList";
 import WallList from "./Detailer/WallList";
 
 import room_data from "./data/room_1_data.json";
+
+
 
 class Editor extends Component {
 	
@@ -76,17 +80,17 @@ class Editor extends Component {
 
 		scene.add(room);
 
-		// add grid
-		const grid = new THREE.Group();
-		grid.name = "group_grid";
-		addGrid(grid, 100, 100);
-		scene.add(grid);
-		
 		// set event
 		setKeyboardEvent(viewControls, controls, raycaster, camera, scene, room);
 		setMouseEvent(width, height, mouse, viewControls, camera, scene, raycaster, target, drag_target, dragControls, room, context_target);
 		setButtonEvent(camera, viewControls, controls, mapControls, scene, target, drag_target, room, light, context_target);
 		setInputEvent(room, target);
+
+		// add grid
+		const grid = new THREE.Group();
+		grid.name = "group_grid";
+		addGrid(grid, 100, 100);
+		scene.add(grid);
 
 		const animate = function () {
 			requestAnimationFrame(animate);
@@ -98,21 +102,32 @@ class Editor extends Component {
 	render() {
 		return (
 			<div className="Editor-fix">
+				<EditorNav fileName="myfiles1"/>
+				<SideBar
+				rooms={<Room/>}
+				showInfos={<ShowInfo/>}
+				wallColors={<WallColor/>}
+				wallLists={<WallList/>}
+				floorColors={<FWColor/>}
+				floorLists={<FloorList/>}
+				/>
+				{/*이 부분이 완벽하게 되지 않는다. 추후 수정 필요
+				addWfs={<AddWF />}
+				moveThings={<MoveThings />}
+				ceilings={<Ceiling />}
+				lights={<Light/>}
+				*/}
 				<div
 					className="Scene"
-					style={{ width: "95%", height: "90%" }}
+					style={{ width: "150vh", height: "90vh", marginLeft: "-10vh" }}
 					ref={(mount) => { this.mount = mount }} />
-				{/*<ViewMode/><GetInfo/>*/}
+
 				<EditMode visible="none"/>
-				<ShowInfo visible="none"/>
 				<MoveThings visible="none"/>
-				<FWColor visible="none"/>
-				<WallColor visible="none"/>
-				<Room visible="none"/>
 				<Light visible="none"/>
 				<Item visible="none"/> {/*아이템 사이즈 조절은 아직 안 넣음*/}
 				<Ceiling visible="none"/>
-				<AddWF visible="none"/>
+				<AddWF visible="none"/>	
 			</div>
 		)
 	}
