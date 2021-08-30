@@ -87,7 +87,7 @@ const Ceiling = (props) => {
 //room, door, window 설정 : 방 추가, 방 넓이 높이 조절, 문/창문 추가하기
 const Room = (props) => {
     return(
-        <div style={{display: props.visible}}>
+        <div>
             <div>선택하고 있는 물체 : <span id="target_name"></span></div> <br/>
             <button id="Add_Room_btn" className="category-select-btns" style={{ width: "370px" }}>방 추가하기</button>
             <br/>
@@ -122,7 +122,7 @@ const Room = (props) => {
 
 const AddWF = (props) => {
     return (
-        <div style={{display: props.visible}}>
+        <div>
             door, window list
             <table>
                 <tbody>
@@ -246,7 +246,6 @@ export {Item}; //아이템 : 사이즈 변경
 export {Ceiling}; //천장 설정 : 천장 ON/OFF
 
 export {AddWF}; //창문 문 추가
-
 
 /*
 export {itemList}; //아이템 목록

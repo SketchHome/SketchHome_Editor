@@ -25,6 +25,14 @@ function clickBtn(props) {
           <div>
             {props.room}
             {props.showInfo}
+            {props.wallColor}
+            {props.wallList}
+            {props.floorColor}
+            {props.floorList}
+            {props.addWf}
+            {props.moveThing}
+            {props.ceiling}
+            {props.light}
           </div>
         );
       }

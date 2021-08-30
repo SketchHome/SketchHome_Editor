@@ -109,24 +109,16 @@ class Editor extends Component {
 				wallLists={<WallList/>}
 				floorColors={<FWColor/>}
 				floorLists={<FloorList/>}
-				/>
-				{/*이 부분이 완벽하게 되지 않는다. 추후 수정 필요
 				addWfs={<AddWF />}
 				moveThings={<MoveThings />}
 				ceilings={<Ceiling />}
 				lights={<Light/>}
-				*/}
+				/>
 				<div
 					className="Scene"
 					style={{ width: "150vh", height: "90vh", marginLeft: "-10vh" }}
-					ref={(mount) => { this.mount = mount }} />
-
-				<EditMode visible="none"/>
-				<MoveThings visible="none"/>
-				<Light visible="none"/>
+					ref={(mount) => { this.mount = mount }} />	
 				<Item visible="none"/> {/*아이템 사이즈 조절은 아직 안 넣음*/}
-				<Ceiling visible="none"/>
-				<AddWF visible="none"/>	
 			</div>
 		)
 	}
