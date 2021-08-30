@@ -109,7 +109,7 @@ class Editor extends Component {
 				wallLists={<WallList/>}
 				floorColors={<FWColor/>}
 				floorLists={<FloorList/>}
-				addWfs={<AddWF />}
+				addWfs={<AddWF/>}
 				moveThings={<MoveThings />}
 				ceilings={<Ceiling />}
 				lights={<Light/>}

@@ -2,7 +2,15 @@ import { ToggleButton, ButtonGroup, Container, Row, Col } from 'react-bootstrap'
 import React, { useState, state, setStates } from "react";
 
 function clickBtn(props) {
-  
+    var isChange = 1;
+
+    const [s1, setS1] = useState("");
+    const [s2, setS2] = useState("none");
+    const [s3, setS3] = useState("none");
+    const [s4, setS4] = useState("none");
+    const [s5, setS5] = useState("none");
+    const [s6, setS6] = useState("none");
+
     const [radioValue, setRadioValue] = useState('1');
   
     const radios_1 = [
@@ -17,64 +25,74 @@ function clickBtn(props) {
     { name: "조명" , value: '6' },
     ];
 
-    
+    const changeBtn = (e) => {
+      console.log(radioValue)
+      setRadioValue(e) //hook value change
+      console.log(radioValue)
+      //version()
+    }
+
     //Select Menu => change pages
     const version = () => {
-      if(radioValue == "1") {
-        return (
-          <div>
-            {props.room}
-            {props.showInfo}
-            {props.wallColor}
-            {props.wallList}
-            {props.floorColor}
-            {props.floorList}
-            {props.addWf}
-            {props.moveThing}
-            {props.ceiling}
-            {props.light}
-          </div>
-        );
-      }
-      else if(radioValue == "2") {
-        return (
-          <div>
-            {props.wallColor}
-            {props.wallList}
-          </div>
-        );
-      }
-      else if(radioValue == "3") {
-        return (
-          <div>
-            {props.floorColor}
-            {props.floorList}
-          </div>
-        );
-      }
-      else if(radioValue == "4") {
-        return (
-          <div>
-            {props.addWf}
-            {props.moveThing}
-          </div>
-        );
-      }
-      else if(radioValue == "5") {
-        return (
-          <div>
-            {props.ceiling}
-          </div>
-        );
-      }
-      else {
-        return (
-          <div>
-            {props.light}
-          </div>
-        );
-      }
+      if(isChange != radioValue) {
+        isChange = radioValue;
+        
+        setTimeout(() => {
+          if(radioValue == "1") {
+            setS1("");
+            setS2("none");
+            setS3("none");
+            setS4("none");
+            setS5("none");
+            setS6("none");
+          }
+          else if(radioValue == "2") {
+            setS1("none");
+            setS2("");
+            setS3("none");
+            setS4("none");
+            setS5("none");
+            setS6("none");
+          }
+          else if(radioValue == "3") {
+            setS1("none");
+            setS2("none");
+            setS3("");
+            setS4("none");
+            setS5("none");
+            setS6("none");
+          }
+          else if(radioValue == "4") {
+            setS1("none");
+            setS2("none");
+            setS3("none");
+            setS4("");
+            setS5("none");
+            setS6("none");
+          }
+          else if(radioValue == "5") {
+            setS1("none");
+            setS2("none");
+            setS3("none");
+            setS4("none");
+            setS5("");
+            setS6("none");
+          }
+          else {
+            setS1("none");
+            setS2("none");
+            setS3("none");
+            setS4("none");
+            setS5("none");
+            setS6("");
+          }
+        }, 200);
+      }   
     };
+
+    const test =  () => {
+      console.log(radioValue)
+    }
 
     return (
       <div>
@@ -93,6 +111,7 @@ function clickBtn(props) {
                       value={radio.value}
                       checked={radioValue === radio.value}
                       onChange={(e) => setRadioValue(e.currentTarget.value)}
+                      onClick={() => version()}
                   >
                       {radio.name}
                   </ToggleButton>
@@ -110,6 +129,7 @@ function clickBtn(props) {
                       value={radio.value}
                       checked={radioValue === radio.value}
                       onChange={(e) => setRadioValue(e.currentTarget.value)}
+                      onClick={() => version()}
                   >
                       {radio.name}
                   </ToggleButton>
@@ -120,6 +140,16 @@ function clickBtn(props) {
         </div>
         <div style={{width: "100%", height: "100%", margin: "30px 0px 0px 50px", fontFamily: "NanumSquare_acB"}}>
             {/**radioValue (1,2,3,4,5,6 각각의 모드에 따라 화면 배치 구성 다르게) */}
+            <div style={{display: s1}}>{props.room}</div>
+            <div style={{display: s1}}>{props.showInfo}</div>
+            <div style={{display: s2}}>{props.wallColor}</div>
+            <div style={{display: s2}}>{props.wallList}</div>
+            <div style={{display: s3}}>{props.floorColor}</div>
+            <div style={{display: s3}}>{props.floorList}</div>
+            <div style={{display: s4}}>{props.addWf}</div>
+            <div style={{display: s4}}>{props.moveThing}</div>
+            <div style={{display: s5}}>{props.ceiling}</div>
+            <div style={{display: s6}}>{props.light}</div>
             {version()}
         </div>
       </div>

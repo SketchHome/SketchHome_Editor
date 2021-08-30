@@ -25,11 +25,6 @@ import Category from './SideBarSelect/Category';
 import Selectitem from './SideBarSelect/Selectitem';
 import { propTypes } from 'react-bootstrap/esm/Image';
 
-//interior tab
-function interior() {
-
-}
-
 function Sidebar(props) {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
@@ -71,11 +66,6 @@ function Sidebar(props) {
                         light={props.lights}
                     />
                 </li>
-                {/*Select view
-                <div className="scroll">
-                    <Selectitem/>
-                </div>
-                */}
             </ul>
              {/*toggle Sidebar*/}
             <div className="toggleBtn">
