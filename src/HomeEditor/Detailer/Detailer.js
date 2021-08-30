@@ -79,7 +79,7 @@ const MoveThings = (props) => {
 const Ceiling = (props) => {
     return (
         <div style={{display: props.visible}}>
-            {/*<div>천장 <span id="ceiling_visibility">Invisible</span></div>*/}
+            <div>천장 <span id="ceiling_visibility">Invisible</span></div>
             <button id="show_ceiling" className="category-select-btns" style={{ width: "370px", backgroundColor: "#A8BA8D"}}>천장 보이기</button>
             <button id="hide_ceiling" className="category-select-btns" style={{ width: "370px"}}>천장 없애기</button>
         </div>
