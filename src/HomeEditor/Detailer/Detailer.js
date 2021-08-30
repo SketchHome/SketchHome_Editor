@@ -3,6 +3,7 @@ import React from "react";
 import ItemList from "./ItemList";
 import FloorList from "./FloorList";
 import WallList from "./WallList";
+import { BiBorderRadius } from "react-icons/bi";
 
 //시점 변경 : 2D, 3D, 1인칭 모드 (Move 완료)
 const ViewMode = (props) => {
@@ -64,11 +65,12 @@ const ShowInfo = (props) => {
 const MoveThings = (props) => {
     return(
         <div style={{display: props.visible}}>
-            <div>target: <span id="target_name"></span></div>
-            <button id="REMOVE_btn" style={{ width: "120px" }}>REMOVE</button>
+            <br/>
+            <div><h5>대상 물체에 대해</h5> <span id="target_name"></span></div>
+            <button id="REMOVE_btn" className="category-select-btns" style={{ width: "370px"}}>지우기</button>
             <br />
-            <button id="ROTATE_H_btn" style={{ width: "120px" }}>ROTATE(H)</button>
-            <button id="ROTATE_V_btn" style={{ width: "120px" }}>ROTATE(V)</button>
+            <button id="ROTATE_H_btn" className="category-select-btns" style={{ width: "370px"}}>상하 회전하기(H)</button>
+            <button id="ROTATE_V_btn" className="category-select-btns" style={{ width: "370px"}}>좌우 회전하기(V)</button>
         </div>
     );
 }
@@ -77,9 +79,9 @@ const MoveThings = (props) => {
 const Ceiling = (props) => {
     return (
         <div style={{display: props.visible}}>
-            <div>Ceiling : <span id="ceiling_visibility">Invisible</span></div>
-            <button id="show_ceiling" style={{ width: "120px" }}>SHOW CEILING</button>
-            <button id="hide_ceiling" style={{ width: "120px" }}>HIDE CEILING</button>
+            {/*<div>천장 <span id="ceiling_visibility">Invisible</span></div>*/}
+            <button id="show_ceiling" className="category-select-btns" style={{ width: "370px", backgroundColor: "#A8BA8D"}}>천장 보이기</button>
+            <button id="hide_ceiling" className="category-select-btns" style={{ width: "370px"}}>천장 없애기</button>
         </div>
     );
 }
@@ -88,7 +90,7 @@ const Ceiling = (props) => {
 const Room = (props) => {
     return(
         <div>
-            <div>선택하고 있는 물체 : <span id="target_name"></span></div> <br/>
+            <div>선택하고 있는 물체  <span id="target_name"></span></div> <br/>
             <button id="Add_Room_btn" className="category-select-btns" style={{ width: "370px" }}>방 추가하기</button>
             <br/>
             <div style={{display: props.visible}}>
@@ -123,16 +125,14 @@ const Room = (props) => {
 const AddWF = (props) => {
     return (
         <div>
-            door, window list
+            <div style={{color: "#A4A4A4"}}>※ 벽을 클릭한 뒤에, 추가하실 것을 눌러주세요.</div> <br/>
             <table>
                 <tbody>
                     <tr>
-                        <td>door</td>
-                        <td><button id="Add_door_btn" item_name="window">add</button></td>
+                        <td><button id="Add_door_btn" item_name="window" className="category-select-btns" style={{ width: "370px", backgroundColor: "#A8BA8D"}}>문 추가하기</button></td>
                     </tr>
                     <tr>
-                        <td>window</td>
-                        <td><button id="Add_window_btn" item_name="door">add</button></td>
+                        <td><button id="Add_window_btn" item_name="door" className="category-select-btns" style={{ width: "370px", backgroundColor: "#A8BA8D"}}>창문 추가하기</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -205,24 +205,25 @@ const Item = (props) => {
 const Light = (props) => {
     return (
         <div style={{display: props.visible}}>
-                light
+                <h5>조명 설정하기</h5> <br/>
                 <table>
                     <tbody>
                         <tr>
-                            <td>light intensity : </td>
-                            <td><input type="range" id="set_light_intensity" step="0.1" min="0" max="1.5" defaultValue="0.7"></input></td>
+                            <td>조명 밝기 </td>
+                            <td><input type="range" style={{ width: "260px", marginLeft: "20px", height:"20px" }} id="set_light_intensity" step="0.1" min="0" max="1.5" defaultValue="0.7"></input></td>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <td>조명 좌표 (X) </td>
+                            <td><input type="number" style={{ width: "150px", marginLeft: "20px", height:"20px", borderRadius: "5px", borderColor: "#F2F2F2", borderWidth: "2px"}} id="set_light_positionx" step="1" min="0" max="300" defaultValue="0"></input></td>
                         </tr>
                         <tr>
-                            <td>light position X : </td>
-                            <td><input type="number" id="set_light_positionx" step="1" min="0" max="300" defaultValue="0"></input></td>
+                            <td>조명 좌표 (Y) </td>
+                            <td><input type="number" style={{ width: "150px", marginLeft: "20px", height:"20px", borderRadius: "5px", borderColor: "#F2F2F2", borderWidth: "2px"}} id="set_light_positiony" step="1" min="3" max="300" defaultValue="3"></input></td>
                         </tr>
                         <tr>
-                            <td>light position Y : </td>
-                            <td><input type="number" id="set_light_positiony" step="1" min="3" max="300" defaultValue="3"></input></td>
-                        </tr>
-                        <tr>
-                            <td>light position Z : </td>
-                            <td><input type="number" id="set_light_positionz" step="1" min="0" max="300" defaultValue="0"></input></td>
+                            <td>조명 좌표 (Z) </td>
+                            <td><input type="number" style={{ width: "150px", marginLeft: "20px", height:"20px", borderRadius: "5px", borderColor: "#F2F2F2", borderWidth: "2px"}} id="set_light_positionz" step="1" min="0" max="300" defaultValue="0"></input></td>
                         </tr>
                     </tbody>
                 </table>

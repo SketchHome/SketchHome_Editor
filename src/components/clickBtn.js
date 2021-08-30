@@ -2,7 +2,7 @@ import { ToggleButton, ButtonGroup, Container, Row, Col } from 'react-bootstrap'
 import React, { useState, state, setStates } from "react";
 
 function clickBtn(props) {
-    var isChange = 1;
+    var isChange = 0;
 
     const [s1, setS1] = useState("");
     const [s2, setS2] = useState("none");
@@ -86,7 +86,7 @@ function clickBtn(props) {
             setS5("none");
             setS6("");
           }
-        }, 200);
+        }, 100);
       }   
     };
 
