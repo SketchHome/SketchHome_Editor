@@ -6,7 +6,7 @@ Refactoring this hompage.
  $ npm start
 ```
 
-- start
+- build
 ```
  $ npm run-script build
 ```
