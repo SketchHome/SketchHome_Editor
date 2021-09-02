@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
@@ -38,6 +39,7 @@
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.3.0",
     "style-loader": "^3.2.1",
-    "three": "^0.120.1"
+    "three": "^0.120.1",
+    "webpack-s3-plugin": "^1.2.0-rc.0"
   }
 }
