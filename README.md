@@ -6,6 +6,11 @@ Refactoring this hompage.
  $ npm start
 ```
 
+- start
+```
+ $ npm run-script build
+```
+
 - src directory structure
 ```bash
 ├── components
