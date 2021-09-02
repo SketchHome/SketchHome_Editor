@@ -11,6 +11,11 @@ Refactoring this hompage.
  $ npm run-script build
 ```
 
+- deploy
+```
+ 2021.09.02 Version 1 build Complete
+```
+
 - src directory structure
 ```bash
 ├── components
