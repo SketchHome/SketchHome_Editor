@@ -1,17 +1,20 @@
+const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
 
 const port = process.env.PORT || 5000;
 
 module.exports = {
   // 개발환경
-  mode: 'development',
+  mode: 'none',
 
   // 애플리케이션 시작 경로
   entry: './src/index.js',
 
   // 번들된 파일 경로
   output: {
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.js',
+    path: path.resolve(__dirname + "/build")
   },
 
   module: {
@@ -48,7 +51,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
+      filename: 'index.html'
     }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+  })
   ],
 
   // 개발 서버 설정
