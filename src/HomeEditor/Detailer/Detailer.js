@@ -1,9 +1,11 @@
 import React from "react";
 
-import ItemList from "./ItemList";
-import FloorList from "./FloorList";
-import WallList from "./WallList";
-import { BiBorderRadius } from "react-icons/bi";
+//wall & floor List
+import { itemList_wall } from "../../components/SampleData/itemList_wall";
+import { itemList_floor } from "../../components/SampleData/itemList_floor";
+
+//component
+import Selectitem from '../../components/SideBarSelect/Selectitem';
 
 //시점 변경 : 2D, 3D, 1인칭 모드 (Move 완료)
 const ViewMode = (props) => {
@@ -147,38 +149,44 @@ const FWColor = (props) => {
         <table>
             <tbody>
                 <tr>
-                    <td>floor color:</td>
+                    <td>바닥 색 선택</td>
                     <td>
-                        <input type="radio" id="floor_color_1" name="floor_color" value="#e6e6e6" defaultChecked /><label style={{ "backgroundColor": "#e6e6e6", "color": "#e6e6e6" }} htmlFor="floor_color_1">clr</label>
-                        <input type="radio" id="floor_color_2" name="floor_color" value="#ffeebb" /><label style={{ "backgroundColor": "#ffeebb", "color": "#ffeebb" }} htmlFor="floor_color_2">clr</label>
-                        <input type="radio" id="floor_color_3" name="floor_color" value="#f8dc81" /><label style={{ "backgroundColor": "#f8dc81", "color": "#f8dc81" }} htmlFor="floor_color_3">clr</label>
-                        <input type="radio" id="floor_color_4" name="floor_color" value="#008891" /><label style={{ "backgroundColor": "#008891", "color": "#008891" }} htmlFor="floor_color_4">clr</label>
-                        <input type="radio" id="floor_color_5" name="floor_color" value="#a9294f" /><label style={{ "backgroundColor": "#a9294f", "color": "#a9294f" }} htmlFor="floor_color_5">clr</label>
+                        <div className="ColorPicker">
+                            <input type="radio" id="floor_color_1" name="floor_color" value="#e6e6e6" defaultChecked /><label style={{ "backgroundColor": "#e6e6e6", "color": "#e6e6e6" }} htmlFor="floor_color_1">clr</label>
+                            <input type="radio" id="floor_color_2" name="floor_color" value="#ffeebb" /><label style={{ "backgroundColor": "#ffeebb", "color": "#ffeebb" }} htmlFor="floor_color_2">clr</label>
+                            <input type="radio" id="floor_color_3" name="floor_color" value="#f8dc81" /><label style={{ "backgroundColor": "#f8dc81", "color": "#f8dc81" }} htmlFor="floor_color_3">clr</label>
+                            <input type="radio" id="floor_color_4" name="floor_color" value="#008891" /><label style={{ "backgroundColor": "#008891", "color": "#008891" }} htmlFor="floor_color_4">clr</label>
+                            <input type="radio" id="floor_color_5" name="floor_color" value="#a9294f" /><label style={{ "backgroundColor": "#a9294f", "color": "#a9294f" }} htmlFor="floor_color_5">clr</label>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <Selectitem Lists={itemList_floor}/> {/*texture 부분에 추가하기*/}
     </div>
     );  
 }
 
 const WallColor = (props) => {
    return (
-    <div style={{display: props.visible}}>
+    <div style={{width: "100%", height: "100%", marginBottom: "200px"}}>
     <table>
         <tbody>
             <tr>
-                <td>wall color:</td>
+                <td>벽지 색 선택</td>
                 <td>
-                    <input type="radio" id="wall_color_1" name="wall_color" value="#c5a880" defaultChecked /><label style={{ "backgroundColor": "#c5a880", "color": "#c5a880" }} htmlFor="wall_color_1">clr</label>
+                <div className="ColorPicker">
+                <input type="radio" id="wall_color_1" name="wall_color" value="#c5a880" defaultChecked /><label style={{ "backgroundColor": "#c5a880", "color": "#c5a880" }} htmlFor="wall_color_1">clr</label>
                     <input type="radio" id="wall_color_2" name="wall_color" value="#f88f01" /><label style={{ "backgroundColor": "#f88f01", "color": "#f88f01" }} htmlFor="wall_color_2">clr</label>
                     <input type="radio" id="wall_color_3" name="wall_color" value="#48426d" /><label style={{ "backgroundColor": "#48426d", "color": "#48426d" }} htmlFor="wall_color_3">clr</label>
                     <input type="radio" id="wall_color_4" name="wall_color" value="#487e95" /><label style={{ "backgroundColor": "#487e95", "color": "#487e95" }} htmlFor="wall_color_4">clr</label>
                     <input type="radio" id="wall_color_5" name="wall_color" value="#e9b0df" /><label style={{ "backgroundColor": "#e9b0df", "color": "#e9b0df" }} htmlFor="wall_color_5">clr</label>
+                </div>
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table>  
+    <Selectitem Lists={itemList_wall}/> {/*texture 부분에 추가하기*/}
 </div>
    );
 }

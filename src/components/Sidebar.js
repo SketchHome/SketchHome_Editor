@@ -32,10 +32,7 @@ function Sidebar(props) {
     return (
         <>
         <IconContext.Provider value={{ color: "black"}}>
-
-        {/*test 할때만 toggle unlock :
-        className={sidebar ? 'nav-menu active' : 'nav-menu'} 코드 들어가야함*/}
-        <nav className='nav-menu active'>
+        <nav className={sidebar ? 'nav-menu' : 'nav-menu active'}>
             <ul className="nav-menu-items">
                 {/*mode menu*/}
                 <li className="navbar-toggle">

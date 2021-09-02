@@ -90,10 +90,6 @@ function clickBtn(props) {
       }   
     };
 
-    const test =  () => {
-      console.log(radioValue)
-    }
-
     return (
       <div>
         <div className="category-select">
@@ -138,7 +134,7 @@ function clickBtn(props) {
             </Container>
         </ButtonGroup>
         </div>
-        <div style={{width: "100%", height: "100%", margin: "30px 0px 0px 50px", fontFamily: "NanumSquare_acB"}}>
+        <div className="scroll" style={{width: "100%", height: "100%", margin: "30px 0px 0px 50px", fontFamily: "NanumSquare_acB"}}>
             {/**radioValue (1,2,3,4,5,6 각각의 모드에 따라 화면 배치 구성 다르게) */}
             <div style={{display: s1}}>{props.room}</div>
             <div style={{display: s1}}>{props.showInfo}</div>

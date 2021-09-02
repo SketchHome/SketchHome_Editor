@@ -336,6 +336,7 @@ input[type=radio] {
     color: #424242;
     text-align: center;
     font-size: 16px;
+    margin-left: -45px;
   }
 
   .List-top {
@@ -414,6 +415,13 @@ input[type=range] {
     border: 0.1px solid #5e6964;
     cursor: pointer;
   }
+
+.ColorPicker {
+    margin-left: 20px;
+    background-color: rgba( 100, 100, 100, 0.2 );
+    padding: 10px;
+    border-radius: 10px;
+}
 
 /*font 모음*/
 @font-face {

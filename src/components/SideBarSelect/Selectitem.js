@@ -13,16 +13,16 @@ import ListComponent from '../ListComponent'
 
 
 //인테리어 tab - 가구 선택 카테고리
-function Selectitem() {
+function Selectitem(props) {
     return(
         <Container className="List">
-            <Row style={{margin: "0px -5px -20px -5px"}}>
+            <Row style={{margin: "-10px -5px -20px -3px"}}>
                 <SearchBar/>
             </Row>
             {/*Basic style*/}
             <Row>
-                <Col style={{marginLeft: "5px", marginBottom: "50px"}}>
-                    <ListComponent/>
+                <Col style={{marginLeft: "5px", marginBottom: "50px", width: "100%", height: "100%"}}>
+                    <ListComponent itemLists={props.Lists}/>
                 </Col>
                
             </Row>
