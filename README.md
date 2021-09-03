@@ -1,5 +1,7 @@
 # SketchHome_Editor
-Refactoring this hompage. 
+
+# Overview
+![image](https://user-images.githubusercontent.com/44183221/131128100-0d95ab22-c630-4189-904b-2ba8aab3f11d.png)
 
 - Live Demo
 http://www.editsketchhome.com/editor
@@ -69,6 +71,3 @@ http://www.editsketchhome.com/editor
 ```
 --disable-web-security --user-data-dir="C:\chrome"
 ```
-
-# Overview
-![image](https://user-images.githubusercontent.com/44183221/131128100-0d95ab22-c630-4189-904b-2ba8aab3f11d.png)
