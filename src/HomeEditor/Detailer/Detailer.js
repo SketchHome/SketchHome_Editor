@@ -3,6 +3,7 @@ import React from "react";
 //wall & floor List
 import { itemList_wall } from "../../components/SampleData/itemList_wall";
 import { itemList_floor } from "../../components/SampleData/itemList_floor";
+import ItemList from "./ItemList";
 
 //component
 import Selectitem from '../../components/SideBarSelect/Selectitem';
@@ -193,18 +194,25 @@ const WallColor = (props) => {
 //아이템 : 사이즈 변경
 const Item = (props) => {
     return (
-        <div style={{display: props.visible}}>
+        <div style={{fontFamily: "NanumSquare_acR"}}>
              <div>
-                item size
+                <div style={{fontSize: "14px", color: "#A4A4A4"}}> 
+                가구 크기 조절하기<br/>
+                ※ 원하시는 가구를 선택 후에 크기를 조절할 수 있습니다.
+                </div>
+                <br/>
                 <table>
                     <tbody>
                         <tr>
-                            <td>size: </td>
-                            <td><input id="resize_item" style={{ width: "100px" }} type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
+                            <td><b>크기 </b> </td>
+                            <td><input id="resize_item" style={{ width: "260px", height: "20px", marginLeft: "20px" }} 
+                            type="range" step="0.1" min="3" max="20" defaultValue="11" /></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <br/>
+            <ItemList/>
         </div>
     );
 }

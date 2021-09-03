@@ -17,8 +17,9 @@ import { IconContext } from 'react-icons';
 import './index.css'
 
 //component
-import ToggleBtn from './toggleBtn';
+import SideBarDetail from './SideBarDetail';
 import SelectBtn from './clickBtn';
+import SetCategory from './SideBarSelect/Category';
 
 //Select Component_click시 전환 페이지
 import Category from './SideBarSelect/Category';
@@ -29,6 +30,11 @@ function Sidebar(props) {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
+    const [room, setRoom] = useState("");
+    const [category, setCate] = useState("none");
+    const [furniture, setFur] = useState("none");
+
+
     return (
         <>
         <IconContext.Provider value={{ color: "black"}}>
@@ -36,7 +42,7 @@ function Sidebar(props) {
             <ul className="nav-menu-items">
                 {/*mode menu*/}
                 <li className="navbar-toggle">
-                    <ToggleBtn
+                    <SideBarDetail
                         btnColor="outline-success"
                         i1="yes"
                         i2="yes"
@@ -46,22 +52,24 @@ function Sidebar(props) {
                         n2={<div className="category-list">인테리어 하기</div>}
                         n3={<div className="category-list">가구 편집하기</div>}
                         border= "0px"
+
+                        rooms={
+                            <SelectBtn 
+                            room={props.rooms}
+                            showInfo={props.showInfos}
+                            wallColor={props.wallColors}
+                            wallList={props.wallLists}
+                            floorColor={props.floorColors}
+                            floorList={props.floorLists}
+                            addWf={props.addWfs}
+                            moveThing={props.moveThings}
+                            ceiling={props.ceilings}
+                            light={props.lights}
                         />
-                </li>
-                {/*room - select btn bar*/}
-                <li>
-                    <SelectBtn
-                        room={props.rooms}
-                        showInfo={props.showInfos}
-                        wallColor={props.wallColors}
-                        wallList={props.wallLists}
-                        floorColor={props.floorColors}
-                        floorList={props.floorLists}
-                        addWf={props.addWfs}
-                        moveThing={props.moveThings}
-                        ceiling={props.ceilings}
-                        light={props.lights}
-                    />
+                        }
+                        categorys={<SetCategory/>}
+                        furnitures={props.Items}
+                        />
                 </li>
             </ul>
              {/*toggle Sidebar*/}

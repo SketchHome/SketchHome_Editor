@@ -58,8 +58,9 @@ const itemContextMenu = (target, context_target, drag_target,  event) => {
     div.style.left = event.pageX - 40 + 'px';
     div.style.top = event.pageY - 40 + 'px';
 
+    //가구에 대한 동작 UI 버튼
     const removeDiv = document.createElement('div');
-    removeDiv.className = 'contextmenu-button';
+    removeDiv.className = 'contextmenu-button-left';
     removeDiv.textContent = 'R';
     div.appendChild(removeDiv);
 
@@ -74,7 +75,7 @@ const itemContextMenu = (target, context_target, drag_target,  event) => {
     div.appendChild(horizonDiv);
 
     const closeDiv = document.createElement('div');
-    closeDiv.className = 'contextmenu-button';
+    closeDiv.className = 'contextmenu-button-right';
     closeDiv.textContent = 'C';
     div.appendChild(closeDiv);
 

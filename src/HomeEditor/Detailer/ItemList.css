@@ -1,5 +1,26 @@
 .item_table {
-    height: 75px;
-    width: 200px;
+    height: 100px;
+    width: 500px;
     overflow: auto;
+    width: 100%;
+    height: 500px;
+    overflow: scroll;
+    -ms-overflow-style: none;
+}
+
+.item_table::-webkit-scrollbar {
+    display: none;
+}
+
+.Add_item_btn{
+    font-family: NanumSquare_acR;
+    margin-left: 30px;
+    width: 100px;
+    height: 30px;
+    background-color: #8D9A7A;
+    color: white;
+    border-radius: 5px;
+    border-width: 0px;
+    box-shadow: 1px 1px 1px 1px rgb(197, 197, 197, 0.6);
+
 }

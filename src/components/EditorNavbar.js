@@ -18,14 +18,14 @@ import { BiScan } from "react-icons/bi"; //scan
 import './index.css'
 
 //component
-import ToggleBtn from './toggleBtn';
+import ToggleBtn from './ToggleBtn';
 
 //image source
 import simpleLogo from '../resource/image/simple_logo.png';
 
 function EditorNavigation(props) {
     return (
-        <div className="EditorNav" className="EditorNav">
+        <div className="EditorNav">
             <Container>
                 <Row xs="5" className="marginTop" style={{width: "1920px"}}>
                     <Col xs="1">

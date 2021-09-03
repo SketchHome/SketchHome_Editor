@@ -6,15 +6,15 @@ import "./ItemList.css"
 const ItemList = () => {
     return (
         <div>
-            item list
+            <b>가구 목록</b>
             <div className="item_table">
                 <table>
                     <tbody>
                         {
                             item_path_list.path.map(path =>
                                 <tr key={path.split("/").pop()}>
-                                    <td>sofa {path.split("/").pop()}</td>
-                                    <td><button className="Add_item_btn" item_name={path.split("/").pop()} item_path={path}>add</button></td>
+                                    <td style={{padding: "5px"}}>sofa {path.split("/").pop()}</td>
+                                    <td style={{padding: "5px"}}><button className="Add_item_btn" item_name={path.split("/").pop()} item_path={path}>추가하기</button></td>
                                 </tr>
                             )
                         }

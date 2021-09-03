@@ -113,12 +113,12 @@ class Editor extends Component {
 				moveThings={<MoveThings />}
 				ceilings={<Ceiling />}
 				lights={<Light/>}
+				Items={<Item/>}
 				/>
 				<div
 					className="Scene"
 					style={{ width: "150vh", height: "90vh", marginLeft: "-10vh" }}
 					ref={(mount) => { this.mount = mount }} />	
-				<Item visible="none"/> {/*아이템 사이즈 조절은 아직 안 넣음*/}
 			</div>
 		)
 	}
