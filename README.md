@@ -1,6 +1,9 @@
 # SketchHome_Editor
 Refactoring this hompage. 
 
+- Live Demo
+http://www.editsketchhome.com/editor
+
 - start
 ```
  $ npm start
