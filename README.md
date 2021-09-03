@@ -1,9 +1,24 @@
 # SketchHome_Editor
-Refactoring this hompage. 
+
+# Overview
+![image](https://user-images.githubusercontent.com/44183221/131128100-0d95ab22-c630-4189-904b-2ba8aab3f11d.png)
+
+- Live Demo
+http://www.editsketchhome.com/editor
 
 - start
 ```
  $ npm start
+```
+
+- build
+```
+ $ npm run-script build
+```
+
+- deploy
+```
+ 2021.09.02 Version 1 build Complete
 ```
 
 - src directory structure
@@ -56,6 +71,3 @@ Refactoring this hompage.
 ```
 --disable-web-security --user-data-dir="C:\chrome"
 ```
-
-# Overview
-![image](https://user-images.githubusercontent.com/44183221/131128100-0d95ab22-c630-4189-904b-2ba8aab3f11d.png)
